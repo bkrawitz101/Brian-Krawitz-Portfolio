@@ -878,6 +878,7 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            min-width: 0;
         }
 
         .modal-image-main {
@@ -936,9 +937,15 @@
 
         .modal-image-gallery {
             display: flex;
+            flex-wrap: nowrap;
             gap: 1rem;
-            transition: transform 0.3s ease;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 5px; /* Space for scrollbar if needed */
+            scrollbar-width: none; /* Firefox */
+            width: 100%;
         }
+        .modal-image-gallery::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
         .modal-image-thumb {
             height: 120px;
@@ -978,6 +985,8 @@
             display: none;
             animation: modalFadeIn 0.3s ease;
             overflow: hidden;
+            flex-direction: column;
+            height: 100vh;
         }
 
         .gallery-fullscreen.active {
@@ -986,6 +995,7 @@
         }
 
         .gallery-header {
+            flex: 0 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1023,19 +1033,19 @@
 
         .gallery-slideshow {
             flex: 1;
+            min-height: 0; /* Allows flex child to shrink below content size */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 1rem;
             position: relative;
-            overflow: auto;
+            overflow: hidden;
+            width: 100%;
         }
 
         .gallery-main-image {
-            max-width: 90%;
-            max-height: 70vh;
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             border: 2px solid var(--cyan-glow);
             box-shadow: 0 0 40px rgba(0, 243, 255, 0.4);
@@ -1073,21 +1083,26 @@
         }
 
         .gallery-thumbnails {
-            padding: 2rem;
+            flex: 0 0 auto;
+            padding: 1rem 2rem;
             border-top: 2px solid var(--cyan-glow);
             background: var(--slate-dark);
+            overflow-x: auto;
+            scrollbar-width: none;
+            width: 100%;
         }
+        .gallery-thumbnails::-webkit-scrollbar { display: none; }
 
         .gallery-thumb-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            display: flex;
+            flex-wrap: nowrap;
             gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
         }
 
         .gallery-thumb {
             height: 100px;
+            flex: 0 0 calc((100% - 2rem) / 3); /* Mirror card layout: exactly 3 visible */
             border: 2px solid var(--grid-line);
             overflow: hidden;
             cursor: pointer;
@@ -2091,6 +2106,9 @@
             const data = projectData[id];
             if (!data) return;
 
+            currentProjectId = id;
+            currentGalleryIndex = 0;
+
             document.getElementById('modal-title').innerText = data.title;
             document.getElementById('modal-meta').innerText = `${data.year} | ${data.category}`;
             document.getElementById('modal-desc').innerText = data.desc;
@@ -2105,7 +2123,23 @@
                         allowfullscreen></iframe>
                     </div>`;
             } else {
-                mediaContainer.innerHTML = `<img id="modal-img" class="modal-image-main" src="${data.image}" alt="Project Image">`;
+                let html = `
+                    <div class="modal-image-main" onclick="openGalleryFullscreen()">
+                        <img id="modal-img" src="${data.image}" alt="${data.title}">
+                    </div>`;
+                
+                const thumbs = data.thumbnails || data.images || [];
+                if (thumbs.length > 0) {
+                    html += `<div class="modal-image-gallery" style="margin-top: 1rem;">`;
+                    for(let i=0; i<thumbs.length; i++) {
+                        html += `
+                            <div class="modal-image-thumb" onclick="changeModalImage(${i})">
+                                <img src="${thumbs[i]}" alt="Thumbnail">
+                            </div>`;
+                    }
+                    html += `</div>`;
+                }
+                mediaContainer.innerHTML = html;
             }
 
             const specsList = document.getElementById('modal-specs');
@@ -2167,13 +2201,19 @@
         function updateThumbnailView() {}
         function prevThumbs() {}
         function nextThumbs() {}
-        function changeMainImage(index) {
+        
+        function changeModalImage(index) {
+            currentGalleryIndex = index;
             const project = projectData[currentProjectId];
-            if (!project || !project.images[index]) return;
-
-            document.getElementById('modalMainImage').src = project.images[index];
+            const images = project.images || [];
             
-            // Update active thumbnail
+            // Update main image in modal
+            const mainImg = document.getElementById('modal-img');
+            if (mainImg && images[index]) {
+                mainImg.src = images[index];
+            }
+            
+            // Update active thumbnail state
             const thumbs = document.querySelectorAll('.modal-image-thumb');
             thumbs.forEach((thumb, i) => {
                 thumb.classList.toggle('active', i === index);
@@ -2194,13 +2234,19 @@
             // Update thumbnails
             const thumbGrid = document.getElementById('galleryThumbs');
             thumbGrid.innerHTML = project.images.map((img, index) => 
-                `<div class="gallery-thumb ${index === currentGalleryIndex ? 'active' : ''}" onclick="selectGalleryImage(${index})">
+                `<div class="gallery-thumb ${index === currentGalleryIndex ? 'active' : ''}" onclick="selectGalleryImage(${index}); document.getElementById('galleryThumbs').children[${index}].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })">
                     <img src="${img}" alt="Thumbnail ${index + 1}">
                 </div>`
             ).join('');
             
             updateGalleryCounter();
             gallery.classList.add('active');
+            
+            // Scroll active thumbnail into view
+            setTimeout(() => {
+                const activeThumb = thumbGrid.children[currentGalleryIndex];
+                if(activeThumb) activeThumb.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 10);
         }
 
         function closeGalleryFullscreen() {
@@ -2240,6 +2286,9 @@
             const thumbs = document.querySelectorAll('.gallery-thumb');
             thumbs.forEach((thumb, i) => {
                 thumb.classList.toggle('active', i === currentGalleryIndex);
+                if (i === currentGalleryIndex) {
+                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
             });
             
             updateGalleryCounter();
@@ -2268,6 +2317,13 @@
             
             if (e.key === 'ArrowLeft') prevGalleryImage();
             if (e.key === 'ArrowRight') nextGalleryImage();
+        });
+
+        // Close gallery on background click
+        document.getElementById('galleryFullscreen').addEventListener('click', (e) => {
+            if (e.target.id === 'galleryFullscreen' || e.target.classList.contains('gallery-slideshow')) {
+                closeGalleryFullscreen();
+            }
         });
 
         // Emergency banner activation (easter egg)
