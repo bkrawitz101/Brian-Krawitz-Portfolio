@@ -1714,19 +1714,21 @@
                 title: 'Blooming VU',
                 year: '2012',
                 category: 'Solo Physical',
+                description: 'Mixed medium PVC and custom lighting tube sculpture created in 6 days for ANDC. Inspired by the intersection of music, nature, and technology. Rapid fabrication masterwork.',
+                materials: 'PVC, Custom Lighting Tubes',
+                location: 'ANDC Festival',
+                details: [
+                    'Rapid fabrication process (6 days)',
+                    'Music visualization concept',
+                    'Created for All Night Dance Celebration',
+                    'Intersection of nature and technology'
+                ],
                 images: [
                     'photos/Blooming VU/fullsize/Blooming VU 01.jpg',
                     'photos/Blooming VU/fullsize/Blooming VU 02.jpg',
                     'photos/Blooming VU/fullsize/Blooming VU 03.jpg',
                     'photos/Blooming VU/fullsize/Blooming VU 04.jpg',
                     'photos/Blooming VU/fullsize/Blooming VU 05.jpg'
-                ],
-                thumbnails: [
-                    'photos/Blooming VU/thumbnails/Blooming VU 01.jpg',
-                    'photos/Blooming VU/thumbnails/Blooming VU 02.jpg',
-                    'photos/Blooming VU/thumbnails/Blooming VU 03.jpg',
-                    'photos/Blooming VU/thumbnails/Blooming VU 04.jpg',
-                    'photos/Blooming VU/thumbnails/Blooming VU 05.jpg'
                 ],
                 tags: ['Rapid Build', 'Music Visual', 'Festival']
             },
@@ -1830,14 +1832,11 @@
                     'Designed critical metal jig/form system',
                     'Shop and warehouse logistics management',
                     'Onsite assembly technical advisor',
-                    'Fire and LED integration',
+                    'Fire and LED integration'
+                ],
                 images: [
                     'photos/Brollyflock/fullsize/Brollyflock 01.jpg',
                     'photos/Brollyflock/fullsize/Brollyflock 02.jpg'
-                ],
-                thumbnails: [
-                    'photos/Brollyflock/thumbnails/Brollyflock 01.jpg',
-                    'photos/Brollyflock/thumbnails/Brollyflock 02.jpg'
                 ],
                 tags: ['EDC', 'Logistics', 'Flux Foundation', 'Festival']
             },
@@ -2026,6 +2025,7 @@
 
             // Handle images
             if (project.images.length > 0) {
+                document.getElementById('modalMainImage').style.display = 'block';
                 document.getElementById('modalMainImage').src = project.images[0];
                 
                 const gallery = document.getElementById('modalGallery');
