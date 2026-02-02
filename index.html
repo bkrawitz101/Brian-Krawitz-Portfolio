@@ -861,14 +861,47 @@
             transform: scale(1.05);
         }
 
-        .modal-image-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .modal-thumbnail-navigator {
+            display: flex;
+            align-items: center;
             gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .thumb-nav {
+            background: var(--slate-medium);
+            border: 1px solid var(--cyan-glow);
+            color: var(--cyan-glow);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .thumb-nav:hover {
+            background: var(--cyan-glow);
+            color: var(--void-black);
+        }
+
+        .modal-image-gallery-wrapper {
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .modal-image-gallery {
+            display: flex;
+            gap: 1rem;
+            transition: transform 0.3s ease;
         }
 
         .modal-image-thumb {
             height: 120px;
+            flex: 0 0 calc((100% - 2rem) / 3);
             border: 1px solid var(--grid-line);
             overflow: hidden;
             cursor: pointer;
@@ -1381,6 +1414,78 @@
                     </div>
                 </div>
             </div>
+
+        <!-- NEW VR SECTION -->
+        <h2 class="section-title" style="margin-top: 6rem;">Immersive & VR Worlds</h2>
+
+        <div class="work-grid">
+            <div class="work-card" onclick="openModal('unity-sanctuary')">
+                <div class="work-image">
+                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Unity+Sanctuary+VR" alt="Unity Sanctuary">
+                </div>
+                <h3>Unity Sanctuary</h3>
+                <span class="year">2021</span>
+                <p>Debuted at Singularity University Australia Global Summit. The original version of the Unity Sanctuary, designed as a 'Wise Mirror'—a digital space for reflection, connection, and higher consciousness.</p>
+                <div class="tags">
+                    <span class="tag">VR</span>
+                    <span class="tag">AltspaceVR</span>
+                    <span class="tag">Sacred Space</span>
+                </div>
+            </div>
+
+            <div class="work-card" onclick="openModal('connected-experience')">
+                <div class="work-image">
+                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Connected+Experience" alt="Connected Experience">
+                </div>
+                <h3>The Connected Experience</h3>
+                <span class="year">2021</span>
+                <p>A prototype demonstration of 'The Connected Experience,' exploring how digital proximity and shared virtual space can foster genuine human connection.</p>
+                <div class="tags">
+                    <span class="tag">Interactive VR</span>
+                    <span class="tag">Biofeedback</span>
+                    <span class="tag">Music Integration</span>
+                </div>
+            </div>
+
+            <div class="work-card" onclick="openModal('white-mirror')">
+                <div class="work-image">
+                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Wise+Mirror" alt="Wise Mirror">
+                </div>
+                <h3>Wise Mirror</h3>
+                <span class="year">2020 • AltspaceVR/Unity</span>
+                <p>Immersive floating islands in space connecting community through artistic expression and biofeedback in AltspaceVR/Unity. Sacred geometry 3D modeling (Fusion 360/Blender), universe environment layout in Unity, storyline and superhero character development.</p>
+                <div class="tags">
+                    <span class="tag">Unity Engine</span>
+                    <span class="tag">3D Modeling</span>
+                    <span class="tag">Narrative Design</span>
+                </div>
+            </div>
+
+            <div class="work-card" onclick="openModal('tesol-worlds')">
+                <div class="work-image">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pVs19-YphAY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3>TESOL VR Worlds</h3>
+                    <p>Educational VR environments & Teaching Demos.</p>
+                    <div class="tags"><span class="tag" style="border-color: #d4af37; color: #d4af37;">Singularity U</span><span class="tag">Education</span></div>
+                </div>
+            </div>
+
+            <div class="work-card" onclick="openModal('heartland-vr')">
+                <div class="work-image">
+                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Heartland+VR" alt="Heartland VR">
+                </div>
+                <h3>Heartland VR</h3>
+                <span class="year">2023 • Spatial.io</span>
+                <p>Immersive and interactive VR experience on Spatial.io connecting and educating communities in sustainable and regenerative practices. Lead Unity developer for layout and programming. 3D modeling in Fusion 360 and Blender.</p>
+                <div class="tags">
+                    <span class="tag">Spatial.io</span>
+                    <span class="tag">Unity Dev</span>
+                    <span class="tag">Regen Education</span>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 
@@ -1459,62 +1564,29 @@
     </div>
 
     <!-- Project Modal -->
-    <div class="project-modal" id="projectModal">
+    <div class="project-modal" id="project-modal">
         <button class="modal-close" onclick="closeModal()">&times;</button>
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle">Life Within Itself</h2>
-                <span class="year" id="modalYear">2017</span>
-                <div class="tags" id="modalTags">
-                    <span class="tag">Sacred Geometry</span>
-                    <span class="tag">LED</span>
-                    <span class="tag">Brass</span>
-                </div>
+                <h2 id="modal-title"></h2>
+                <div id="modal-meta" style="color: var(--gold-dune); font-size: 1.2rem; margin-top: 1rem;"></div>
             </div>
 
             <div class="modal-body">
                 <div class="modal-images">
-                    <div class="modal-image-main" onclick="openGalleryFullscreen()">
-                        <img id="modalMainImage" src="https://pplx-res.cloudinary.com/image/upload/v1769988314/search_images/00cf4cb8ea3b9a8845d98b373274551f242399c3.jpg" alt="Life Within Itself">
-                    </div>
-                    <div class="modal-image-gallery" id="modalGallery">
-                        <!-- Gallery thumbnails populated by JavaScript -->
-                    </div>
+                    <!-- This is a placeholder so the parentNode selector works on a fresh modal -->
+                    <div class="modal-image-main" style="display: none;"></div>
                 </div>
 
                 <div class="modal-details">
                     <h3>Project Overview</h3>
-                    <p id="modalDescription">Mixed medium brass, wood, and frosted acrylic lighting sculpture inspired by sacred geometry. A meditation on interconnection and divine proportion.</p>
-
-                    <div class="modal-specs">
-                        <div class="spec-item">
-                            <span class="spec-label">Year</span>
-                            <span class="spec-value" id="modalSpecYear">2017</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Category</span>
-                            <span class="spec-value" id="modalSpecCategory">Solo Physical</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Materials</span>
-                            <span class="spec-value" id="modalSpecMaterials">Brass, Wood, Frosted Acrylic, LEDs</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Location</span>
-                            <span class="spec-value" id="modalSpecLocation">Private Collection</span>
-                        </div>
-                    </div>
+                    <p id="modal-desc"></p>
 
                     <div class="modal-description">
                         <h4>Details</h4>
-                        <div id="modalDetailsList">
-                            <ul>
-                                <li>Inspired by Flower of Life sacred geometry pattern</li>
-                                <li>Custom LED lighting system with multiple modes</li>
-                                <li>Handcrafted brass framework</li>
-                                <li>Layered frosted acrylic panels for light diffusion</li>
-                            </ul>
-                        </div>
+                        <ul id="modal-specs" style="list-style: none; padding-left: 0;">
+                            <!-- Populated by JS -->
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -1525,10 +1597,12 @@
         // Project data structure
         const projectData = {
             'life-within-itself': {
+                type: 'image',
                 title: 'Life Within Itself',
                 year: '2017',
                 category: 'Solo Physical',
-                description: 'Mixed medium brass, wood, and frosted acrylic lighting sculpture inspired by sacred geometry. A meditation on interconnection and divine proportion expressed through the Flower of Life pattern.',
+                desc: 'Mixed medium brass, wood, and frosted acrylic lighting sculpture inspired by sacred geometry. A meditation on interconnection and divine proportion expressed through the Flower of Life pattern.',
+                image: 'photos/Life Within Itself/fullsize/Live Within Itself Finished 01.jpg',
                 materials: 'Brass, Wood, Frosted Acrylic, Custom LEDs',
                 location: 'Private Collection',
                 details: [
@@ -1602,10 +1676,12 @@
                 tags: ['Sacred Geometry', 'LED', 'Brass']
             },
             'fountain-pon-lai': {
+                type: 'image',
                 title: 'The Fountain of Pon Lai',
                 year: '2015',
                 category: 'Solo Physical',
-                description: 'The Path of Flow. Mixed medium frosted acrylic and interactive cognitive lighting sculpture, premiered at the Cognitive Technologies exhibit, San Francisco Exploratorium.',
+                desc: 'The Path of Flow. Mixed medium frosted acrylic and interactive cognitive lighting sculpture, premiered at the Cognitive Technologies exhibit, San Francisco Exploratorium.',
+                image: 'photos/The Fountain of Pon Lai- The Path of Flow/fullsize/The Fountain of Pon Lai- The Path of Flow 01.jpg',
                 materials: 'Frosted Acrylic, Interactive LEDs, Sensors',
                 location: 'San Francisco Exploratorium (2015)',
                 details: [
@@ -1641,10 +1717,12 @@
                 tags: ['Interactive', 'Cognitive', 'Exploratorium']
             },
             'shamayim': {
+                type: 'image',
                 title: 'Shamayim',
                 year: '2015',
                 category: 'Solo Physical',
-                description: 'The Path of Enlightenment. Prototype from the Unity series: The Path of Us All. Exploring transcendence through geometric light patterns and Hebrew mystical concepts.',
+                desc: 'The Path of Enlightenment. Prototype from the Unity series: The Path of Us All. Exploring transcendence through geometric light patterns and Hebrew mystical concepts.',
+                image: 'photos/Shamayim-The Path of Enlightenment/fullsize/Shamayim 01.jpg',
                 materials: 'Mixed Medium, LEDs',
                 location: 'Private Collection',
                 details: [
@@ -1666,10 +1744,12 @@
                 tags: ['Prototype', 'Unity Series', 'Sacred Geometry']
             },
             'electric-dna': {
+                type: 'image',
                 title: 'Electric DNA',
                 year: '2013',
                 category: 'Solo Physical',
-                description: 'Mixed medium PVC and custom lighting tube sculpture for All Night Dance Celebration (ANDC). Inspired by DNA strands of life, dance, and technology. Full design and fabrication.',
+                desc: 'Mixed medium PVC and custom lighting tube sculpture for All Night Dance Celebration (ANDC). Inspired by DNA strands of life, dance, and technology. Full design and fabrication.',
+                image: 'photos/Electric DNA/fullsize/Electric DNA 01.jpg',
                 materials: 'PVC, Custom Lighting Tubes, LEDs',
                 location: 'ANDC Festival',
                 details: [
@@ -1696,10 +1776,12 @@
                 tags: ['Festival', 'ANDC', 'Biomorphic']
             },
             'kryptonicity': {
+                type: 'image',
                 title: 'Kryptonicity',
                 year: '2012',
                 category: 'Solo Physical',
-                description: 'Mixed medium frosted acrylic, metal, and lighting sculpture inspired by 1970s sci-fi aesthetic and art deco. Uniting form and function in crystalline structures that evoke Superman\'s Fortress of Solitude.',
+                desc: 'Mixed medium frosted acrylic, metal, and lighting sculpture inspired by 1970s sci-fi aesthetic and art deco. Uniting form and function in crystalline structures that evoke Superman\'s Fortress of Solitude.',
+                image: 'photos/Kryptonicity/fullsize/Kryptonicity 01.jpg',
                 materials: 'Frosted Acrylic, Metal, LEDs',
                 location: 'Private Collection',
                 details: [
@@ -1726,10 +1808,12 @@
                 tags: ['Retro-Futurism', 'Art Deco', 'Crystalline']
             },
             'blooming-vu': {
+                type: 'image',
                 title: 'Blooming VU',
                 year: '2012',
                 category: 'Solo Physical',
-                description: 'Mixed medium PVC and custom lighting tube sculpture created in 6 days for ANDC. Inspired by the intersection of music, nature, and technology. Rapid fabrication masterwork.',
+                desc: 'Mixed medium PVC and custom lighting tube sculpture created in 6 days for ANDC. Inspired by the intersection of music, nature, and technology. Rapid fabrication masterwork.',
+                image: 'photos/Blooming VU/fullsize/Blooming VU 01.jpg',
                 materials: 'PVC, Custom Lighting Tubes',
                 location: 'ANDC Festival',
                 details: [
@@ -1748,10 +1832,12 @@
                 tags: ['Rapid Build', 'Music Visual', 'Festival']
             },
             'buddleia': {
+                type: 'image',
                 title: 'Buddleia Orgasmica',
                 year: '2012',
                 category: 'Solo Physical',
-                description: 'Prototype for Burning Man. Inspired by Buddleia flower (butterfly bush) and collaborative music creation, designed with sonar sensors for motion interaction - a digital theremin of light.',
+                desc: 'Prototype for Burning Man. Inspired by Buddleia flower (butterfly bush) and collaborative music creation, designed with sonar sensors for motion interaction - a digital theremin of light.',
+                image: null,
                 materials: 'Mixed Medium, Sonar Sensors, Interactive LEDs',
                 location: 'Prototype',
                 details: [
@@ -1765,10 +1851,12 @@
                 tags: ['Prototype', 'Interactive', 'Sonar', 'Music']
             },
             'mens-amplio': {
+                type: 'image',
                 title: 'Mens Amplio',
                 year: '2013',
                 category: 'Collaborative Physical',
-                description: 'Burning Man installation by Don Cain. Mixed medium acrylic, metal, fire, and interactive cognitive lightning inspired by brain neurons and axons. Designed custom lighting and core sequence. Led team of 10 volunteers installing 200+ fixtures.',
+                desc: 'Burning Man installation by Don Cain. Mixed medium acrylic, metal, fire, and interactive cognitive lightning inspired by brain neurons and axons. Designed custom lighting and core sequence. Led team of 10 volunteers installing 200+ fixtures.',
+                image: 'photos/Mens Amplio/fullsize/Mens Amplio 01.jpg',
                 materials: 'Acrylic, Metal, Fire, Interactive Lighting',
                 location: 'Burning Man 2013',
                 details: [
@@ -1797,10 +1885,12 @@
                 tags: ['Burning Man', 'Team Lead', 'Neuroscience', 'Collaboration']
             },
             'zoa': {
+                type: 'image',
                 title: 'Zoa',
                 year: '2012',
                 category: 'Collaborative Physical',
-                description: 'Burning Man installation by Flux Foundation. Mixed medium wood and interactive lighting inspired by sea creatures. Designed custom fixtures and assisted organic breath lighting sequence. Led team of 10 installing 100+ fixtures.',
+                desc: 'Burning Man installation by Flux Foundation. Mixed medium wood and interactive lighting inspired by sea creatures. Designed custom fixtures and assisted organic breath lighting sequence. Led team of 10 installing 100+ fixtures.',
+                image: 'photos/Zoa/fullsize/Zoa 01.jpg',
                 materials: 'Wood, Custom LEDs, Interactive Systems',
                 location: 'Burning Man 2012',
                 details: [
@@ -1835,10 +1925,12 @@
                 tags: ['Flux Foundation', 'Organic Motion', 'Burning Man']
             },
             'brollyflock': {
+                type: 'image',
                 title: 'Brollyflock',
                 year: '2011',
                 category: 'Collaborative Physical',
-                description: 'Electric Daisy Carnival installation by Flux Foundation. Mixed medium steel, LEDs, fire, and nylon interactive umbrella-like sculpture. Key design of metal jig/form, managed shop/warehouse logistics, onsite assembly advisor.',
+                desc: 'Electric Daisy Carnival installation by Flux Foundation. Mixed medium steel, LEDs, fire, and nylon interactive umbrella-like sculpture. Key design of metal jig/form, managed shop/warehouse logistics, onsite assembly advisor.',
+                image: 'photos/Brollyflock/fullsize/Brollyflock 01.jpg',
                 materials: 'Steel, LEDs, Fire, Nylon',
                 location: 'Electric Daisy Carnival 2011',
                 details: [
@@ -1856,10 +1948,12 @@
                 tags: ['EDC', 'Logistics', 'Flux Foundation', 'Festival']
             },
             'temple-flux': {
+                type: 'image',
                 title: 'Temple of Flux',
                 year: '2010',
                 category: 'Collaborative Physical',
-                description: 'Burning Man Temple (21,000 sq ft) by Flux Foundation. Monumental wood and lighting sculpture. Co-designed outside surface, developed modular "thatches" process, led team of 30 building 700+ thatches. Managed shop/warehouse logistics.',
+                desc: 'Burning Man Temple (21,000 sq ft) by Flux Foundation. Monumental wood and lighting sculpture. Co-designed outside surface, developed modular "thatches" process, led team of 30 building 700+ thatches. Managed shop/warehouse logistics.',
+                image: 'photos/Temple of Flux/fullsize/Temple of Flux 01.jpg',
                 materials: 'Wood, Lighting, Modular Components',
                 location: 'Burning Man 2010',
                 details: [
@@ -1884,64 +1978,55 @@
                 tags: ['Temple', 'Massive Scale', '700+ Units', 'Flux Foundation']
             },
             'unity-sanctuary': {
-                title: 'Unity Sanctuary VR',
-                year: '2020',
-                category: 'Solo Digital',
-                description: 'Immersive virtual reality experience in AltspaceVR inspired by habitable lantern-style yurts. Digital sanctuary space blending sacred geometry with accessible virtual architecture for community gathering.',
+                title: "Unity Sanctuary (Wise Mirror)",
+                year: "2021",
+                category: "VR / Digital",
+                type: "video",
+                videoId: "pVs19-YphAY", 
+                desc: "Debuted at Singularity University Australia Global Summit. The original version of the Unity Sanctuary, designed as a 'Wise Mirror'—a digital space for reflection, connection, and higher consciousness.",
+                details: ["Event: Singularity U Australia Summit 2021", "Platform: Virtual Reality", "Concept: Digital Sanctuary"],
+                images: [],
                 materials: 'VR Environment, 3D Assets, Lighting',
                 location: 'AltspaceVR Platform',
-                details: [
-                    'Built on AltspaceVR platform',
-                    'Lantern-yurt hybrid architecture',
-                    'Sacred geometry spatial design',
-                    'Community gathering space',
-                    'Accessible VR environment',
-                    'Custom 3D asset creation'
-                ],
-                images: [],
                 tags: ['VR', 'AltspaceVR', 'Sacred Space', 'Community']
             },
             'connected-experience': {
-                title: 'The Connected Experience',
-                year: '2020',
-                category: 'Solo Digital',
-                description: 'Immersive and interactive VR experience in AltspaceVR connecting community through artistic expression and biofeedback. Piano integration with real-time bio-responsive environments.',
+                title: "The Connected Experience",
+                year: "2021",
+                category: "VR / Digital",
+                type: "video",
+                videoId: "REPLACE_WITH_ID",
+                desc: "A prototype demonstration of 'The Connected Experience,' exploring how digital proximity and shared virtual space can foster genuine human connection.",
+                details: ["Event: Singularity U Australia Summit 2021", "Status: Prototype", "Focus: Social VR"],
+                images: [],
                 materials: 'VR Environment, Biofeedback Systems, Music Integration',
                 location: 'AltspaceVR Platform',
-                details: [
-                    'Real-time biofeedback integration',
-                    'Piano performance interface',
-                    'Bio-responsive environmental changes',
-                    'Community artistic expression',
-                    'Interactive VR experience',
-                    'Music and physiology connection'
-                ],
-                images: [],
                 tags: ['Interactive VR', 'Biofeedback', 'Music Integration', 'AltspaceVR']
             },
-            'vr-tesol': {
-                title: 'VR TESOL Environments',
-                year: '2021',
-                category: 'Solo Digital',
-                description: 'Immersive and interactive virtual reality experience designed for modern Education 2.0 in AltspaceVR. Proof of concept for Tina Liu\'s UCLA TESOL course using 3D assets and spatial learning design.',
-                materials: 'VR Environment, Educational 3D Assets',
-                location: 'AltspaceVR / UCLA TESOL',
-                details: [
-                    'UCLA TESOL course collaboration',
-                    'Education 2.0 proof of concept',
-                    'Spatial learning environment design',
-                    'Custom educational 3D assets',
-                    'Language learning VR application',
-                    'Immersive teaching methodology'
-                ],
-                images: [],
-                tags: ['Education', 'TESOL', 'Spatial Learning', 'UCLA']
+            'tesol-worlds': {
+                title: "TESOL VR Worlds",
+                year: "2021",
+                category: "VR / Education",
+                type: "video",
+                videoId: "pVs19-YphAY", // Main Montage Video
+                desc: "A montage of educational worlds created for TESOL. Below are specific teaching demonstrations featuring instructors Tina and Brian utilizing these immersive environments.",
+                details: ["Use Case: Education / EdTech", "Instructors: Tina & Brian", "Goal: Immersive Language Learning"],
+                // The 5 Demo Videos
+                gallery: [
+                    { title: "Tina: Teaching Module 1", videoId: "REPLACE_WITH_TINA_ID_1" },
+                    { title: "Tina: Teaching Module 2", videoId: "REPLACE_WITH_TINA_ID_2" },
+                    { title: "Tina: Teaching Module 3", videoId: "REPLACE_WITH_TINA_ID_3" },
+                    { title: "Tina: Teaching Module 4", videoId: "REPLACE_WITH_TINA_ID_4" },
+                    { title: "Brian: Teaching Module 1", videoId: "REPLACE_WITH_BRIAN_ID_1" }
+                ]
             },
             'heartland-vr': {
+                type: 'image',
                 title: 'Heartland VR',
                 year: '2023',
                 category: 'Collaborative Digital',
-                description: 'Immersive and interactive VR experience on Spatial.io connecting and educating communities in sustainable and regenerative practices. Lead Unity developer for layout and programming. 3D modeling in Fusion 360 and Blender.',
+                desc: 'Immersive and interactive VR experience on Spatial.io connecting and educating communities in sustainable and regenerative practices. Lead Unity developer for layout and programming. 3D modeling in Fusion 360 and Blender.',
+                image: null,
                 materials: 'Unity Engine, 3D Models, VR Environment',
                 location: 'Spatial.io Platform',
                 details: [
@@ -1957,10 +2042,12 @@
                 tags: ['Spatial.io', 'Unity Dev', 'Regen Education', 'Sustainability']
             },
             'white-mirror': {
+                type: 'image',
                 title: 'White Mirror',
                 year: '2020',
                 category: 'Collaborative Digital',
-                description: 'Immersive floating islands in space connecting community through artistic expression and biofeedback in AltspaceVR/Unity. Sacred geometry 3D modeling (Fusion 360/Blender), universe environment layout in Unity, storyline and superhero character development.',
+                desc: 'Immersive floating islands in space connecting community through artistic expression and biofeedback in AltspaceVR/Unity. Sacred geometry 3D modeling (Fusion 360/Blender), universe environment layout in Unity, storyline and superhero character development.',
+                image: null,
                 materials: 'Unity Engine, VR Assets, 3D Models',
                 location: 'AltspaceVR / Unity',
                 details: [
@@ -1981,6 +2068,8 @@
         let currentGalleryIndex = 0;
         let currentProjectImages = [];
         let currentProjectId = '';
+        let thumbnailStartIndex = 0;
+        const THUMBS_PER_PAGE = 3;
 
         // Filter functionality
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -2007,63 +2096,87 @@
         });
 
         // Modal functions
-        function openModal(projectId) {
-            const modal = document.getElementById('projectModal');
-            const project = projectData[projectId];
+
+        function openModal(id) {
+            const data = projectData[id];
+            if (!data) return;
+
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-meta').innerText = `${data.year} | ${data.category}`;
+            document.getElementById('modal-desc').innerText = data.desc;
+
+            const mediaContainer = document.querySelector('.modal-images');
             
-            if (!project) return;
-
-            currentProjectId = projectId;
-            currentProjectImages = project.images;
-            currentGalleryIndex = 0;
-
-            // Populate modal content
-            document.getElementById('modalTitle').textContent = project.title;
-            document.getElementById('modalYear').textContent = project.year;
-            document.getElementById('modalDescription').textContent = project.description;
-            document.getElementById('modalSpecYear').textContent = project.year;
-            document.getElementById('modalSpecCategory').textContent = project.category;
-            document.getElementById('modalSpecMaterials').textContent = project.materials;
-            document.getElementById('modalSpecLocation').textContent = project.location;
-
-            // Populate tags
-            const tagsContainer = document.getElementById('modalTags');
-            tagsContainer.innerHTML = project.tags.map(tag => 
-                `<span class="tag${project.category.includes('Collaborative') ? ' collab' : ''}">${tag}</span>`
-            ).join('');
-
-            // Populate details list
-            const detailsList = document.getElementById('modalDetailsList');
-            detailsList.innerHTML = '<ul>' + project.details.map(detail => 
-                `<li>${detail}</li>`
-            ).join('') + '</ul>';
-
-            // Handle images
-            if (project.images.length > 0) {
-                document.getElementById('modalMainImage').style.display = 'block';
-                document.getElementById('modalMainImage').src = project.images[0];
-                
-                const gallery = document.getElementById('modalGallery');
-                gallery.innerHTML = project.images.map((img, index) => 
-                    `<div class="modal-image-thumb ${index === 0 ? 'active' : ''}" onclick="changeMainImage(${index})">
-                        <img src="${img}" alt="Thumbnail ${index + 1}">
-                    </div>`
-                ).join('');
+            if (data.type === 'video') {
+                mediaContainer.innerHTML = `
+                    <div class="video-container" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+                        <iframe src="https://www.youtube.com/embed/${data.videoId}" 
+                        style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" 
+                        allowfullscreen></iframe>
+                    </div>`;
             } else {
-                document.getElementById('modalMainImage').style.display = 'none';
-                document.getElementById('modalGallery').innerHTML = '<p style="color: var(--text-muted); text-align: center;">No images available</p>';
+                mediaContainer.innerHTML = `<img id="modal-img" class="modal-image-main" src="${data.image}" alt="Project Image">`;
             }
 
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            const specsList = document.getElementById('modal-specs');
+            specsList.innerHTML = ''; 
+            data.details.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>&gt;</span> ${item}`;
+                specsList.appendChild(li);
+            });
+
+            // 4. Gallery Logic (New!)
+            // Check if modal-gallery container exists, if not create it dynamically
+            let gallerySection = document.getElementById('modal-gallery');
+            if (!gallerySection) {
+                gallerySection = document.createElement('div');
+                gallerySection.id = 'modal-gallery';
+                gallerySection.style.cssText = "display:none; margin-top: 3rem; border-top: 1px solid var(--grid-line); padding-top: 2rem;";
+                gallerySection.innerHTML = `<h3 style="color: var(--cyan-glow); font-family: 'Orbitron'; margin-bottom: 1.5rem;">Teaching Demonstrations</h3><div id="gallery-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;"></div>`;
+                document.querySelector('.modal-content').appendChild(gallerySection);
+            }
+            
+            const galleryContainer = document.getElementById('gallery-container');
+            
+            if (data.gallery && data.gallery.length > 0) {
+                gallerySection.style.display = 'block';
+                galleryContainer.innerHTML = ''; // Clear previous
+                
+                data.gallery.forEach(item => {
+                    const vidDiv = document.createElement('div');
+                    vidDiv.innerHTML = `
+                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border: 1px solid var(--grid-line); margin-bottom:0.5rem;">
+                            <iframe src="https://www.youtube.com/embed/${item.videoId}" 
+                            style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" 
+                            allowfullscreen></iframe>
+                        </div>
+                        <p style="color:var(--text-muted); font-size:0.9rem;">${item.title}</p>
+                    `;
+                    galleryContainer.appendChild(vidDiv);
+                });
+            } else {
+                gallerySection.style.display = 'none';
+            }
+
+            const modal = document.getElementById('project-modal');
+            modal.style.display = 'block';
+            setTimeout(() => modal.classList.add('active'), 10);
         }
 
         function closeModal() {
-            const modal = document.getElementById('projectModal');
+            const modal = document.getElementById('project-modal');
             modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
             document.body.style.overflow = 'auto';
         }
 
+        // The following functions are part of the old gallery system and are no longer called by the new modal.
+        function updateThumbnailView() {}
+        function prevThumbs() {}
+        function nextThumbs() {}
         function changeMainImage(index) {
             const project = projectData[currentProjectId];
             if (!project || !project.images[index]) return;
