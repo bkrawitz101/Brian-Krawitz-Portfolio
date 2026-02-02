@@ -1005,6 +1005,21 @@
             object-fit: contain;
         }
 
+        /* Fullscreen Overlay Fallback */
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            object-fit: contain;
+        }
+
         .modal-details {
             color: var(--text-primary);
         }
@@ -2061,20 +2076,48 @@
         }
 
         function toggleImageFullscreen(img) {
-            if (!document.fullscreenElement) {
-                img.requestFullscreen().catch(err => {
-                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
-                });
-                img.style.cursor = 'zoom-out';
-            } else {
+            const container = img.parentElement;
+
+            // 1. Exit CSS Overlay if active
+            if (container.classList.contains('fullscreen-overlay')) {
+                container.classList.remove('fullscreen-overlay');
+                img.style.cursor = 'zoom-in';
+                return;
+            }
+
+            // 2. Exit Native Fullscreen if active
+            if (document.fullscreenElement) {
                 document.exitFullscreen();
                 img.style.cursor = 'zoom-in';
+                return;
+            }
+
+            // 3. Enter Fullscreen (Try Native -> Fallback to CSS)
+            if (img.requestFullscreen) {
+                img.requestFullscreen().then(() => {
+                    img.style.cursor = 'zoom-out';
+                }).catch(err => {
+                    console.log('Native fullscreen failed, using CSS fallback');
+                    container.classList.add('fullscreen-overlay');
+                    img.style.cursor = 'zoom-out';
+                });
+            } else {
+                // iOS/Mobile fallback
+                container.classList.add('fullscreen-overlay');
+                img.style.cursor = 'zoom-out';
             }
         }
 
         // Close modal on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
+                const overlay = document.querySelector('.fullscreen-overlay');
+                if (overlay) {
+                    overlay.classList.remove('fullscreen-overlay');
+                    const img = overlay.querySelector('img');
+                    if (img) img.style.cursor = 'zoom-in';
+                    return;
+                }
                 closeModal();
             }
         });
