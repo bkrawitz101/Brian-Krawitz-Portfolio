@@ -651,6 +651,15 @@
             position: relative;
         }
 
+    .clickable-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 12; /* Above badge (10) and iframe (default) */
+    }
+
         .work-image::before {
             content: '';
             position: absolute;
@@ -1236,6 +1245,7 @@
                 <div class="work-card" data-category="solo-physical" data-project="life-within-itself" onclick="openModal('life-within-itself')">
                     <div class="work-image">
                         <img src="photos/Life Within Itself/thumbnails/Live Within Itself Finished 01.jpg" alt="Life Within Itself - Sacred Geometry Sculpture">
+                        <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
                     <h3 data-glitch="Life Within Itself">Life Within Itself</h3>
@@ -1251,6 +1261,7 @@
                 <div class="work-card" data-category="solo-physical" data-project="fountain-pon-lai" onclick="openModal('fountain-pon-lai')">
                     <div class="work-image">
                         <img src="photos/The Fountain of Pon Lai- The Path of Flow/thumbnails/The Fountain of Pon Lai- The Path of Flow 01.jpg" alt="The Fountain of Pon Lai">
+                        <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
                     <h3 data-glitch="The Fountain of Pon Lai">The Fountain of Pon Lai</h3>
@@ -1266,6 +1277,7 @@
                 <div class="work-card" data-category="solo-physical" data-project="electric-dna" onclick="openModal('electric-dna')">
                     <div class="work-image">
                         <img src="photos/Electric DNA/thumbnails/Electric DNA 01.jpg" alt="Electric DNA">
+                        <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
                     <h3 data-glitch="Electric DNA">Electric DNA</h3>
@@ -1281,6 +1293,7 @@
                 <div class="work-card" data-category="solo-physical" data-project="kryptonicity" onclick="openModal('kryptonicity')">
                     <div class="work-image">
                         <img src="photos/Kryptonicity/thumbnails/Kryptonicity 01.jpg" alt="Kryptonicity">
+                        <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
                     <h3 data-glitch="Kryptonicity">Kryptonicity</h3>
@@ -1295,6 +1308,7 @@
                 <div class="work-card" data-category="solo-physical" data-project="blooming-vu" onclick="openModal('blooming-vu')">
                     <div class="work-image">
                         <img src="photos/Blooming VU/thumbnails/Blooming VU 01.jpg" alt="Blooming VU">
+                        <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
                     <h3 data-glitch="Blooming VU">Blooming VU</h3>
@@ -1314,6 +1328,7 @@
                 <div class="work-card" data-category="collab-physical" data-project="mens-amplio" onclick="openModal('mens-amplio')">
                     <div class="work-image">
                         <img src="photos/Mens Amplio/thumbnails/Mens Amplio 01.jpg" alt="Mens Amplio">
+                        <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
                     <h3 data-glitch="Mens Amplio">Mens Amplio</h3>
@@ -1329,6 +1344,7 @@
                 <div class="work-card" data-category="collab-physical" data-project="zoa" onclick="openModal('zoa')">
                     <div class="work-image">
                         <img src="photos/Zoa/thumbnails/Zoa 01.jpg" alt="Zoa">
+                        <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
                     <h3 data-glitch="Zoa">Zoa</h3>
@@ -1343,6 +1359,7 @@
                 <div class="work-card" data-category="collab-physical" data-project="brollyflock" onclick="openModal('brollyflock')">
                     <div class="work-image">
                         <img src="photos/Brollyflock/thumbnails/Brollyflock 01.jpg" alt="Brollyflock">
+                        <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
                     <h3 data-glitch="Brollyflock">Brollyflock</h3>
@@ -1357,6 +1374,7 @@
                 <div class="work-card" data-category="collab-physical" data-project="temple-flux" onclick="openModal('temple-flux')">
                     <div class="work-image">
                         <img src="photos/Temple of Flux/thumbnails/Temple of Flux 01.jpg" alt="Temple of Flux">
+                        <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
                     <h3 data-glitch="Temple of Flux">Temple of Flux</h3>
@@ -1377,6 +1395,7 @@
             <div class="work-card" onclick="openModal('unity-sanctuary')">
                 <div class="work-image">
                     <img src="https://placehold.co/600x400/000000/00f3ff?text=Unity+Sanctuary+VR" alt="Unity Sanctuary">
+                    <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
                 <h3>Unity Sanctuary</h3>
@@ -1392,6 +1411,7 @@
             <div class="work-card" onclick="openModal('connected-experience')">
                 <div class="work-image">
                     <img src="https://placehold.co/600x400/000000/00f3ff?text=Connected+Experience" alt="Connected Experience">
+                    <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
                 <h3>The Connected Experience</h3>
@@ -1413,6 +1433,7 @@
             <div class="work-card" onclick="openModal('white-mirror')">
                 <div class="work-image">
                     <img src="https://placehold.co/600x400/000000/00f3ff?text=Wise+Mirror" alt="Wise Mirror">
+                    <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
                 <h3>Wise Mirror</h3>
@@ -1426,8 +1447,9 @@
             </div>
 
             <div class="work-card" onclick="openModal('tesol-worlds')">
-                <div class="work-image" onclick="event.stopPropagation()">
+                <div class="work-image">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/pVs19-YphAY?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
                 <div class="card-content">
@@ -1440,6 +1462,7 @@
             <div class="work-card" onclick="openModal('heartland-vr')">
                 <div class="work-image">
                     <img src="https://placehold.co/600x400/000000/00f3ff?text=Heartland+VR" alt="Heartland VR">
+                    <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
                 <h3>Heartland VR</h3>
