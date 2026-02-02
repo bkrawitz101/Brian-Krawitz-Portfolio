@@ -943,13 +943,45 @@
             scroll-behavior: smooth;
             padding-bottom: 5px; /* Space for scrollbar if needed */
             scrollbar-width: none; /* Firefox */
-            width: 100%;
+            flex: 1;
+            -webkit-overflow-scrolling: touch;
         }
         .modal-image-gallery::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
+        .modal-gallery-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .thumb-nav-btn {
+            background: rgba(21, 21, 32, 0.8);
+            border: 1px solid var(--cyan-glow);
+            color: var(--cyan-glow);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .thumb-nav-btn:hover {
+            background: var(--cyan-glow);
+            color: var(--void-black);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+        }
+
         .modal-image-thumb {
             height: 120px;
-            flex: 0 0 calc((100% - 2rem) / 3);
+            flex: 0 0 120px;
             border: 1px solid var(--grid-line);
             overflow: hidden;
             cursor: pointer;
@@ -1082,14 +1114,22 @@
             right: 2rem;
         }
 
-        .gallery-thumbnails {
-            flex: 0 0 auto;
-            padding: 1rem 2rem;
-            border-top: 2px solid var(--cyan-glow);
+        .gallery-thumbnails-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
             background: var(--slate-dark);
+            border-top: 2px solid var(--cyan-glow);
+            padding: 1rem 2rem;
+            flex: 0 0 auto;
+        }
+
+        .gallery-thumbnails {
             overflow-x: auto;
             scrollbar-width: none;
-            width: 100%;
+            flex: 1;
+            -webkit-overflow-scrolling: touch;
         }
         .gallery-thumbnails::-webkit-scrollbar { display: none; }
 
@@ -1102,7 +1142,7 @@
 
         .gallery-thumb {
             height: 100px;
-            flex: 0 0 calc((100% - 2rem) / 3); /* Mirror card layout: exactly 3 visible */
+            flex: 0 0 100px;
             border: 2px solid var(--grid-line);
             overflow: hidden;
             cursor: pointer;
@@ -1552,18 +1592,14 @@
             <span id="galleryCounter">1 / 3</span>
         </div>
         
-        <div class="gallery-thumbnails">
-            <div class="gallery-thumb-grid" id="galleryThumbs">
-                <div class="gallery-thumb active" onclick="selectGalleryImage(0)">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/v1769988314/search_images/00cf4cb8ea3b9a8845d98b373274551f242399c3.jpg" alt="Thumbnail 1">
-                </div>
-                <div class="gallery-thumb" onclick="selectGalleryImage(1)">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/v1769988314/search_images/781cafd487331c89ef06f973fdb416b2fa743c05.jpg" alt="Thumbnail 2">
-                </div>
-                <div class="gallery-thumb" onclick="selectGalleryImage(2)">
-                    <img src="https://pplx-res.cloudinary.com/image/upload/v1769988314/search_images/f59262ca7b996e658291984a4930c7173129bf7a.jpg" alt="Thumbnail 3">
+        <div class="gallery-thumbnails-wrapper">
+            <button class="thumb-nav-btn" onclick="scrollFullscreenGallery(-1)">&lt;</button>
+            <div class="gallery-thumbnails" id="galleryThumbContainer">
+                <div class="gallery-thumb-grid" id="galleryThumbs">
+                    <!-- Thumbnails populated by JS -->
                 </div>
             </div>
+            <button class="thumb-nav-btn" onclick="scrollFullscreenGallery(1)">&gt;</button>
         </div>
     </div>
 
@@ -2130,14 +2166,18 @@
                 
                 const thumbs = data.thumbnails || data.images || [];
                 if (thumbs.length > 0) {
-                    html += `<div class="modal-image-gallery" style="margin-top: 1rem;">`;
+                    html += `<div class="modal-gallery-wrapper">
+                                <button class="thumb-nav-btn" onclick="scrollModalGallery(-1)">&lt;</button>
+                                <div class="modal-image-gallery">`;
                     for(let i=0; i<thumbs.length; i++) {
                         html += `
                             <div class="modal-image-thumb" onclick="changeModalImage(${i})">
                                 <img src="${thumbs[i]}" alt="Thumbnail">
                             </div>`;
                     }
-                    html += `</div>`;
+                    html += `   </div>
+                                <button class="thumb-nav-btn" onclick="scrollModalGallery(1)">&gt;</button>
+                             </div>`;
                 }
                 mediaContainer.innerHTML = html;
             }
@@ -2352,6 +2392,21 @@
                 }
             });
         });
+
+        // Thumbnail Scroll Functions
+        function scrollModalGallery(direction) {
+            const gallery = document.querySelector('.modal-image-gallery');
+            if (gallery) {
+                gallery.scrollBy({ left: direction * 200, behavior: 'smooth' });
+            }
+        }
+
+        function scrollFullscreenGallery(direction) {
+            const gallery = document.getElementById('galleryThumbContainer');
+            if (gallery) {
+                gallery.scrollBy({ left: direction * 200, behavior: 'smooth' });
+            }
+        }
     </script>
 </body>
 </html>
