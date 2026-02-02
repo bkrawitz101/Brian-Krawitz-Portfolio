@@ -1005,174 +1005,6 @@
             object-fit: contain;
         }
 
-        /* Fullscreen Gallery View */
-        .gallery-fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 15, 0.98);
-            z-index: 3000;
-            display: none;
-            animation: modalFadeIn 0.3s ease;
-            overflow: hidden;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        .gallery-fullscreen.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .gallery-header {
-            flex: 0 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem;
-            border-bottom: 2px solid var(--cyan-glow);
-        }
-
-        .gallery-back {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--slate-medium);
-            border: 2px solid var(--cyan-glow);
-            color: var(--cyan-glow);
-            padding: 0.75rem 1.5rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-back:hover {
-            background: var(--cyan-glow);
-            color: var(--void-black);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
-        }
-
-        .gallery-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--gold-dune);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .gallery-slideshow {
-            flex: 1;
-            min-height: 0; /* Allows flex child to shrink below content size */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .gallery-main-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border: 2px solid var(--cyan-glow);
-            box-shadow: 0 0 40px rgba(0, 243, 255, 0.4);
-        }
-
-        .gallery-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            background: var(--slate-medium);
-            border: 2px solid var(--cyan-glow);
-            color: var(--cyan-glow);
-            font-size: 2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-nav:hover {
-            background: var(--cyan-glow);
-            color: var(--void-black);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.8);
-        }
-
-        .gallery-nav.prev {
-            left: 2rem;
-        }
-
-        .gallery-nav.next {
-            right: 2rem;
-        }
-
-        .gallery-thumbnails-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            width: 100%;
-            background: var(--slate-dark);
-            border-top: 2px solid var(--cyan-glow);
-            padding: 1rem 2rem;
-            flex: 0 0 auto;
-        }
-
-        .gallery-thumbnails {
-            overflow-x: auto;
-            scrollbar-width: none;
-            flex: 1;
-            -webkit-overflow-scrolling: touch;
-        }
-        .gallery-thumbnails::-webkit-scrollbar { display: none; }
-
-        .gallery-thumb-grid {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 1rem;
-            width: 100%;
-        }
-
-        .gallery-thumb {
-            height: 100px;
-            flex: 0 0 100px;
-            border: 2px solid var(--grid-line);
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .gallery-thumb:hover {
-            border-color: var(--cyan-glow);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
-        }
-
-        .gallery-thumb.active {
-            border-color: var(--gold-dune);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
-        }
-
-        .gallery-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .gallery-counter {
-            text-align: center;
-            padding: 1rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
         .modal-details {
             color: var(--text-primary);
         }
@@ -1570,38 +1402,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Fullscreen Gallery -->
-    <div class="gallery-fullscreen" id="galleryFullscreen">
-        <div class="gallery-header">
-            <button class="gallery-back" onclick="closeGalleryFullscreen()">
-                <span>◂</span>
-                <span>Back to Project</span>
-            </button>
-            <div class="gallery-title">Life Within Itself Gallery</div>
-            <div style="width: 150px;"></div>
-        </div>
-        
-        <div class="gallery-slideshow">
-            <button class="gallery-nav prev" onclick="prevGalleryImage()">‹</button>
-            <img id="galleryMainImage" class="gallery-main-image" src="https://pplx-res.cloudinary.com/image/upload/v1769988314/search_images/00cf4cb8ea3b9a8845d98b373274551f242399c3.jpg" alt="Gallery Image">
-            <button class="gallery-nav next" onclick="nextGalleryImage()">›</button>
-        </div>
-        
-        <div class="gallery-counter">
-            <span id="galleryCounter">1 / 3</span>
-        </div>
-        
-        <div class="gallery-thumbnails-wrapper">
-            <button class="thumb-nav-btn" onclick="scrollFullscreenGallery(-1)">&lt;</button>
-            <div class="gallery-thumbnails" id="galleryThumbContainer">
-                <div class="gallery-thumb-grid" id="galleryThumbs">
-                    <!-- Thumbnails populated by JS -->
-                </div>
-            </div>
-            <button class="thumb-nav-btn" onclick="scrollFullscreenGallery(1)">&gt;</button>
-        </div>
-    </div>
 
     <!-- Project Modal -->
     <div class="project-modal" id="project-modal">
@@ -2160,8 +1960,8 @@
                     </div>`;
             } else {
                 let html = `
-                    <div class="modal-image-main" onclick="openGalleryFullscreen()">
-                        <img id="modal-img" src="${data.image}" alt="${data.title}">
+                    <div class="modal-image-main">
+                        <img id="modal-img" src="${data.image}" alt="${data.title}" onclick="toggleImageFullscreen(this)" style="cursor: zoom-in;">
                     </div>`;
                 
                 const thumbs = data.thumbnails || data.images || [];
@@ -2260,109 +2060,22 @@
             });
         }
 
-        function openGalleryFullscreen() {
-            const project = projectData[currentProjectId];
-            if (!project || project.images.length === 0) return;
-
-            const gallery = document.getElementById('galleryFullscreen');
-            const mainImage = document.getElementById('galleryMainImage');
-            const titleElement = document.querySelector('.gallery-title');
-            
-            titleElement.textContent = `${project.title} Gallery`;
-            mainImage.src = project.images[currentGalleryIndex];
-            
-            // Update thumbnails
-            const thumbGrid = document.getElementById('galleryThumbs');
-            thumbGrid.innerHTML = project.images.map((img, index) => 
-                `<div class="gallery-thumb ${index === currentGalleryIndex ? 'active' : ''}" onclick="selectGalleryImage(${index}); document.getElementById('galleryThumbs').children[${index}].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })">
-                    <img src="${img}" alt="Thumbnail ${index + 1}">
-                </div>`
-            ).join('');
-            
-            updateGalleryCounter();
-            gallery.classList.add('active');
-            
-            // Scroll active thumbnail into view
-            setTimeout(() => {
-                const activeThumb = thumbGrid.children[currentGalleryIndex];
-                if(activeThumb) activeThumb.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
-            }, 10);
-        }
-
-        function closeGalleryFullscreen() {
-            const gallery = document.getElementById('galleryFullscreen');
-            gallery.classList.remove('active');
-        }
-
-        function nextGalleryImage() {
-            const project = projectData[currentProjectId];
-            if (!project) return;
-            
-            currentGalleryIndex = (currentGalleryIndex + 1) % project.images.length;
-            updateGalleryImage();
-        }
-
-        function prevGalleryImage() {
-            const project = projectData[currentProjectId];
-            if (!project) return;
-            
-            currentGalleryIndex = (currentGalleryIndex - 1 + project.images.length) % project.images.length;
-            updateGalleryImage();
-        }
-
-        function selectGalleryImage(index) {
-            currentGalleryIndex = index;
-            updateGalleryImage();
-        }
-
-        function updateGalleryImage() {
-            const project = projectData[currentProjectId];
-            if (!project) return;
-
-            const mainImage = document.getElementById('galleryMainImage');
-            mainImage.src = project.images[currentGalleryIndex];
-            
-            // Update active thumbnail
-            const thumbs = document.querySelectorAll('.gallery-thumb');
-            thumbs.forEach((thumb, i) => {
-                thumb.classList.toggle('active', i === currentGalleryIndex);
-                if (i === currentGalleryIndex) {
-                    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                }
-            });
-            
-            updateGalleryCounter();
-        }
-
-        function updateGalleryCounter() {
-            const project = projectData[currentProjectId];
-            if (!project) return;
-            
-            const counter = document.getElementById('galleryCounter');
-            counter.textContent = `${currentGalleryIndex + 1} / ${project.images.length}`;
+        function toggleImageFullscreen(img) {
+            if (!document.fullscreenElement) {
+                img.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+                img.style.cursor = 'zoom-out';
+            } else {
+                document.exitFullscreen();
+                img.style.cursor = 'zoom-in';
+            }
         }
 
         // Close modal on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeModal();
-                closeGalleryFullscreen();
-            }
-        });
-
-        // Gallery keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            const galleryOpen = document.getElementById('galleryFullscreen').classList.contains('active');
-            if (!galleryOpen) return;
-            
-            if (e.key === 'ArrowLeft') prevGalleryImage();
-            if (e.key === 'ArrowRight') nextGalleryImage();
-        });
-
-        // Close gallery on background click
-        document.getElementById('galleryFullscreen').addEventListener('click', (e) => {
-            if (e.target.id === 'galleryFullscreen' || e.target.classList.contains('gallery-slideshow')) {
-                closeGalleryFullscreen();
             }
         });
 
@@ -2396,13 +2109,6 @@
         // Thumbnail Scroll Functions
         function scrollModalGallery(direction) {
             const gallery = document.querySelector('.modal-image-gallery');
-            if (gallery) {
-                gallery.scrollBy({ left: direction * 200, behavior: 'smooth' });
-            }
-        }
-
-        function scrollFullscreenGallery(direction) {
-            const gallery = document.getElementById('galleryThumbContainer');
             if (gallery) {
                 gallery.scrollBy({ left: direction * 200, behavior: 'smooth' });
             }
