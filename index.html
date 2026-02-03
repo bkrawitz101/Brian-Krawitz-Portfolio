@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brian Krawitz | [en]lightening concepts</title>
+    <title>[en]lightening concepts | Brian Krawitz | Light Sculptor</title>
+    <meta name="description" content="The artistic portfolio of Brian Krawitz. Exploring the intersection of light, sacred geometry, and digital realms through immersive installations and XR environments.">
+    <meta property="og:title" content="[en]lightening concepts | Brian Krawitz">
+    <meta property="og:description" content="Exploring the intersection of light, sacred geometry, and digital realms through immersive installations and XR environments.">
+    <meta property="og:image" content="social-preview.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://briankrawitz.com">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;700&family=Montserrat:wght@300;400;600&display=swap');
 
@@ -1200,6 +1206,36 @@
                 display: block;
             }
         }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--cyan-glow);
+            color: var(--void-black);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.8);
+        }
     </style>
 </head>
 <body>
@@ -1241,7 +1277,7 @@
             <div class="work-grid">
                 <div class="work-card" data-category="solo-physical" data-project="life-within-itself" onclick="openModal('life-within-itself')">
                     <div class="work-image">
-                        <img src="photos/Life Within Itself/thumbnails/Live Within Itself Finished 01.jpg" alt="Life Within Itself - Sacred Geometry Sculpture">
+                        <img src="photos/Life Within Itself/thumbnails/Live Within Itself Finished 01.jpg" alt="Life Within Itself - Sacred Geometry Sculpture" loading="lazy">
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
@@ -1253,7 +1289,7 @@
 
                 <div class="work-card" data-category="solo-physical" data-project="fountain-pon-lai" onclick="openModal('fountain-pon-lai')">
                     <div class="work-image">
-                        <img src="photos/The Fountain of Pon Lai- The Path of Flow/thumbnails/The Fountain of Pon Lai- The Path of Flow 01.jpg" alt="The Fountain of Pon Lai">
+                        <img src="photos/The Fountain of Pon Lai- The Path of Flow/thumbnails/The Fountain of Pon Lai- The Path of Flow 01.jpg" alt="The Fountain of Pon Lai" loading="lazy">
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
@@ -1265,7 +1301,7 @@
 
                 <div class="work-card" data-category="solo-physical" data-project="electric-dna" onclick="openModal('electric-dna')">
                     <div class="work-image">
-                        <img src="photos/Electric DNA/thumbnails/Electric DNA 01.jpg" alt="Electric DNA">
+                        <img src="photos/Electric DNA/thumbnails/Electric DNA 01.jpg" alt="Electric DNA" loading="lazy">
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
@@ -1277,7 +1313,7 @@
 
                 <div class="work-card" data-category="solo-physical" data-project="kryptonicity" onclick="openModal('kryptonicity')">
                     <div class="work-image">
-                        <img src="photos/Kryptonicity/thumbnails/Kryptonicity 01.jpg" alt="Kryptonicity">
+                        <img src="photos/Kryptonicity/thumbnails/Kryptonicity 01.jpg" alt="Kryptonicity" loading="lazy">
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
@@ -1289,7 +1325,7 @@
 
                 <div class="work-card" data-category="solo-physical" data-project="blooming-vu" onclick="openModal('blooming-vu')">
                     <div class="work-image">
-                        <img src="photos/Blooming VU/thumbnails/Blooming VU 01.jpg" alt="Blooming VU">
+                        <img src="photos/Blooming VU/thumbnails/Blooming VU 01.jpg" alt="Blooming VU" loading="lazy">
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
@@ -1306,7 +1342,7 @@
             <div class="work-grid">
                 <div class="work-card" data-category="collab-physical" data-project="mens-amplio" onclick="openModal('mens-amplio')">
                     <div class="work-image">
-                        <img src="photos/Mens Amplio/thumbnails/Mens Amplio 01.jpg" alt="Mens Amplio">
+                        <img src="photos/Mens Amplio/thumbnails/Mens Amplio 01.jpg" alt="Mens Amplio" loading="lazy">
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
@@ -1318,7 +1354,7 @@
 
                 <div class="work-card" data-category="collab-physical" data-project="zoa" onclick="openModal('zoa')">
                     <div class="work-image">
-                        <img src="photos/Zoa/thumbnails/Zoa 01.jpg" alt="Zoa">
+                        <img src="photos/Zoa/thumbnails/Zoa 01.jpg" alt="Zoa" loading="lazy">
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
@@ -1330,7 +1366,7 @@
 
                 <div class="work-card" data-category="collab-physical" data-project="brollyflock" onclick="openModal('brollyflock')">
                     <div class="work-image">
-                        <img src="photos/Brollyflock/thumbnails/Brollyflock 01.jpg" alt="Brollyflock">
+                        <img src="photos/Brollyflock/thumbnails/Brollyflock 01.jpg" alt="Brollyflock" loading="lazy">
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
@@ -1342,7 +1378,7 @@
 
                 <div class="work-card" data-category="collab-physical" data-project="temple-flux" onclick="openModal('temple-flux')">
                     <div class="work-image">
-                        <img src="photos/Temple of Flux/thumbnails/Temple of Flux 01.jpg" alt="Temple of Flux">
+                        <img src="photos/Temple of Flux/thumbnails/Temple of Flux 01.jpg" alt="Temple of Flux" loading="lazy">
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
@@ -1359,7 +1395,7 @@
         <div class="work-grid">
             <div class="work-card" onclick="openModal('unity-sanctuary')">
                 <div class="work-image">
-                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Unity+Sanctuary+VR" alt="Unity Sanctuary">
+                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Unity+Sanctuary+VR" alt="Unity Sanctuary" loading="lazy">
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
@@ -1371,7 +1407,7 @@
 
             <div class="work-card" onclick="openModal('connected-experience')">
                 <div class="work-image">
-                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Connected+Experience" alt="Connected Experience">
+                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Connected+Experience" alt="Connected Experience" loading="lazy">
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
@@ -1389,7 +1425,7 @@
         <div class="work-grid">
             <div class="work-card" onclick="openModal('white-mirror')">
                 <div class="work-image">
-                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Wise+Mirror" alt="Wise Mirror">
+                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Wise+Mirror" alt="Wise Mirror" loading="lazy">
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
@@ -1413,7 +1449,7 @@
 
             <div class="work-card" onclick="openModal('heartland-vr')">
                 <div class="work-image">
-                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Heartland+VR" alt="Heartland VR">
+                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Heartland+VR" alt="Heartland VR" loading="lazy">
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
@@ -1460,6 +1496,9 @@
                     <p><a href="https://www.instagram.com/bkrawitz101/">Instagram</a> • <a href="https://briankrawitz.com">Main Site</a> • <a href="#">LinkedIn</a></p>
                 </div>
             </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="mailto:bkrawitz@gmail.com" class="cta-button">Initiate Inquiry</a>
+            </div>
         </div>
     </section>
 
@@ -1489,6 +1528,8 @@
             </div>
         </div>
     </div>
+
+    <div id="back-to-top" class="back-to-top" onclick="scrollToTop()">↑</div>
 
     <script>
         // Project data structure
@@ -2155,29 +2196,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // The following functions are part of the old gallery system and are no longer called by the new modal.
-        function updateThumbnailView() {}
-        function prevThumbs() {}
-        function nextThumbs() {}
-        
-        function changeModalImage(index) {
-            currentGalleryIndex = index;
-            const project = projectData[currentProjectId];
-            const images = project.images || [];
-            
-            // Update main image in modal
-            const mainImg = document.getElementById('modal-img');
-            if (mainImg && images[index]) {
-                mainImg.src = images[index];
-            }
-            
-            // Update active thumbnail state
-            const thumbs = document.querySelectorAll('.modal-image-thumb');
-            thumbs.forEach((thumb, i) => {
-                thumb.classList.toggle('active', i === index);
-            });
-        }
-
         // Lightbox Functions
         function openLightbox(index) {
             currentLightboxIndex = index;
@@ -2241,20 +2259,26 @@
             });
         });
 
-        // Thumbnail Scroll Functions
-        function scrollModalGallery(direction) {
-            const gallery = document.querySelector('.modal-image-gallery');
-            if (gallery) {
-                gallery.scrollBy({ left: direction * 200, behavior: 'smooth' });
-            }
-        }
-
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
+        }
+
+        // Back to Top
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('back-to-top');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
