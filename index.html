@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brian Krawitz | [en]lightening concepts</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;700&family=Montserrat:wght@300;400;600&display=swap');
 
         :root {
             /* Tron/Blade Runner neon palette */
@@ -322,26 +322,12 @@
         .work-card {
             background: var(--slate-medium);
             border: 1px solid var(--grid-line);
-            padding: 2rem;
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
             cursor: pointer;
-        }
-
-        .work-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--cyan-glow), var(--purple-deep), var(--gold-dune));
-            transition: left 0.4s ease;
-        }
-
-        .work-card:hover::before {
-            left: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .work-card:hover {
@@ -350,40 +336,37 @@
             box-shadow: 0 10px 40px rgba(0, 243, 255, 0.3);
         }
 
-        .work-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--cyan-glow);
-            margin-bottom: 0.5rem;
-        }
-
-        .work-card .year {
-            color: var(--gold-dune);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .work-card .tags {
+        .work-card-content {
+            padding: 1.5rem;
+            background: var(--slate-medium);
+            border-top: 1px solid var(--grid-line);
             display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 243, 255, 0.1);
-            border: 1px solid var(--cyan-glow);
-            color: var(--cyan-glow);
-            font-size: 0.8rem;
+        .work-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .tag.collab {
-            border-color: var(--orange-accent);
-            color: var(--orange-accent);
-            background: rgba(255, 107, 53, 0.1);
+        .explore-link {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--cyan-glow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .work-card:hover .explore-link {
+            color: var(--text-primary);
+            text-shadow: 0 0 8px var(--cyan-glow);
         }
 
         /* Contact Section */
@@ -683,10 +666,10 @@
         /* Work card image styling */
         .work-image {
             width: 100%;
-            height: 250px;
+            height: 300px; /* Taller for exhibition style */
             overflow: hidden;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--grid-line);
+            margin-bottom: 0;
+            border-bottom: 1px solid var(--grid-line);
             position: relative;
         }
 
@@ -834,7 +817,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 10, 15, 0.95);
+            background: #000000;
             backdrop-filter: blur(10px);
             z-index: 2000;
             display: none;
@@ -852,196 +835,117 @@
         }
 
         .modal-content {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 2rem;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
             position: relative;
+            display: grid;
+            grid-template-columns: 60% 40%; /* Gallery Left, Narrative Right */
         }
 
         .modal-close {
             position: fixed;
             top: 2rem;
             right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--slate-medium);
-            border: 2px solid var(--cyan-glow);
-            color: var(--cyan-glow);
-            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            line-height: 1;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
             z-index: 2001;
+            opacity: 0.7;
         }
 
         .modal-close:hover {
-            background: var(--cyan-glow);
-            color: var(--void-black);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.8);
-            transform: rotate(90deg);
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid var(--cyan-glow);
-        }
-
-        .modal-header h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            opacity: 1;
             color: var(--cyan-glow);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            transform: scale(1.1);
         }
 
-        .modal-header .year {
-            color: var(--gold-dune);
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .modal-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .modal-images {
+        /* Modal Left: Gallery */
+        .modal-gallery-section {
+            height: 100vh;
+            overflow-y: auto;
+            padding: 4rem 2rem;
+            background: #050505;
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            min-width: 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--cyan-glow) #000;
         }
 
-        .modal-image-main {
+        .modal-gallery-item {
             width: 100%;
-            height: 400px;
-            border: 2px solid var(--cyan-glow);
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
-            cursor: pointer;
+            border: 1px solid #222;
         }
 
-        .modal-image-main img {
+        .modal-gallery-item img, 
+        .modal-gallery-item iframe {
             width: 100%;
-            height: 100%;
+            height: auto;
+            display: block;
             object-fit: contain;
-            filter: brightness(1) contrast(1.1);
-            transition: transform 0.3s ease;
         }
 
-        .modal-image-main:hover img {
-            transform: scale(1.05);
+        /* Modal Right: Narrative */
+        .modal-narrative-section {
+            height: 100vh;
+            overflow-y: auto;
+            padding: 6rem 4rem 4rem 4rem;
+            background: #000000;
+            border-left: 1px solid #222;
         }
 
-        .modal-thumbnail-navigator {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
+        .modal-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
         }
 
-        .thumb-nav {
-            background: var(--slate-medium);
-            border: 1px solid var(--cyan-glow);
+        .modal-meta {
+            font-family: 'Monospace', 'Courier New', monospace;
+            color: var(--gold-dune);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+            display: block;
+            opacity: 0.8;
+        }
+
+        .narrative-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .narrative-label {
+            font-family: 'Monospace', 'Courier New', monospace;
             color: var(--cyan-glow);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            display: block;
+            opacity: 0.7;
         }
 
-        .thumb-nav:hover {
-            background: var(--cyan-glow);
-            color: var(--void-black);
-        }
-
-        .modal-image-gallery-wrapper {
-            overflow: hidden;
-            flex: 1;
-        }
-
-        .modal-image-gallery {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 1rem;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding-bottom: 5px; /* Space for scrollbar if needed */
-            scrollbar-width: none; /* Firefox */
-            flex: 1;
-            -webkit-overflow-scrolling: touch;
-        }
-        .modal-image-gallery::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-
-        .modal-gallery-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            width: 100%;
-        }
-
-        .thumb-nav-btn {
-            background: rgba(21, 21, 32, 0.8);
-            border: 1px solid var(--cyan-glow);
-            color: var(--cyan-glow);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 40px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .thumb-nav-btn:hover {
-            background: var(--cyan-glow);
-            color: var(--void-black);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
-        }
-
-        .modal-image-thumb {
-            height: 120px;
-            flex: 0 0 120px;
-            border: 1px solid var(--grid-line);
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .modal-image-thumb:hover {
-            border-color: var(--cyan-glow);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
-        }
-
-        .modal-image-thumb.active {
-            border-color: var(--gold-dune);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-        }
-
-        .modal-image-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+        .narrative-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #ccc;
+            font-weight: 300;
         }
 
         /* Fullscreen Overlay Fallback */
@@ -1059,93 +963,28 @@
             object-fit: contain;
         }
 
-        .modal-details {
-            color: var(--text-primary);
-        }
-
-        .modal-details h3 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--gold-dune);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .modal-details p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            color: var(--text-muted);
-        }
-
-        .modal-specs {
-            background: var(--slate-medium);
-            padding: 2rem;
-            border: 1px solid var(--grid-line);
-            margin-bottom: 2rem;
-        }
-
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--grid-line);
-        }
-
-        .spec-item:last-child {
-            border-bottom: none;
-        }
-
-        .spec-label {
-            color: var(--cyan-glow);
-            font-weight: 500;
-        }
-
-        .spec-value {
-            color: var(--text-primary);
-        }
-
-        .modal-description {
-            margin-bottom: 2rem;
-        }
-
-        .modal-description h4 {
-            color: var(--cyan-glow);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .modal-description ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .modal-description li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .modal-description li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--cyan-glow);
-        }
-
         @media (max-width: 968px) {
-            .modal-body {
+            .modal-content {
                 grid-template-columns: 1fr;
             }
 
-            .modal-header h2 {
-                font-size: 2rem;
+            .modal-gallery-section {
+                height: 50vh;
+                padding: 2rem;
+            }
+            
+            .modal-narrative-section {
+                height: auto;
+                padding: 2rem;
+                overflow-y: visible;
             }
 
             .modal-close {
                 top: 1rem;
                 right: 1rem;
+                color: white;
+                background: rgba(0,0,0,0.5);
+                border-radius: 50%;
             }
         }
 
@@ -1187,7 +1026,6 @@
                 <li><a href="#bio" onclick="toggleMobileMenu()">Origin</a></li>
                 <li><a href="#physical" onclick="toggleMobileMenu()">Light & Sculpture</a></li>
                 <li><a href="#digital" onclick="toggleMobileMenu()">Digital Realms</a></li>
-                <li><a href="#living-systems" onclick="toggleMobileMenu()">Living Systems</a></li>
                 <li><a href="#contact" onclick="toggleMobileMenu()">Transmission</a></li>
             </ul>
             <div class="hamburger" onclick="toggleMobileMenu()">
@@ -1201,18 +1039,9 @@
     <section class="hero">
         <div class="hero-content">
             <h1 class="glitch max-glitch">[en]lightening concepts</h1>
-            <h2>Immersive Light, Sacred Geometry & Regenerative Systems</h2>
-            <p>Sculpting consciousness through technology, radiant structures, and living blueprints.</p>
+            <h2>Light Sculptor & Creative Technologist</h2>
+            <p>Exploring the intersection of frequency, geometry, and human consciousness through radiant structures.</p>
             <a href="#work" class="cta-button">Enter the Grid</a>
-        </div>
-    </section>
-
-    <section id="living-systems" class="section" style="padding-top: 0; padding-bottom: 4rem; scroll-margin-top: 100px;">
-        <div class="container" style="text-align: center;">
-            <h3 style="font-family: 'Orbitron', sans-serif; color: var(--gold-dune); margin-bottom: 1rem; letter-spacing: 2px; font-size: 1.5rem;">Currently</h3>
-            <p style="font-size: 1.1rem; color: var(--text-primary); max-width: 800px; margin: 0 auto; line-height: 1.6;">
-                Designing the immersive architecture for a regenerative campus in Northern California • Weaving permaculture with spatial design • Available for light sculpture commissions and immersive environments.
-            </p>
         </div>
     </section>
 
@@ -1227,13 +1056,9 @@
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
-                    <h3 data-glitch="Life Within Itself">Life Within Itself</h3>
-                    <span class="year">2017</span>
-                    <p>Mixed medium brass, wood, and frosted acrylic lighting sculpture inspired by sacred geometry. A meditation on interconnection and divine proportion.</p>
-                    <div class="tags">
-                        <span class="tag">Sacred Geometry</span>
-                        <span class="tag">LED</span>
-                        <span class="tag">Brass</span>
+                    <div class="work-card-content">
+                        <h3>Life Within Itself</h3>
+                        <span class="explore-link">Explore &rarr;</span>
                     </div>
                 </div>
 
@@ -1243,13 +1068,9 @@
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
-                    <h3 data-glitch="The Fountain of Pon Lai">The Fountain of Pon Lai</h3>
-                    <span class="year">2015</span>
-                    <p>The Path of Flow. Mixed medium frosted acrylic and interactive cognitive lighting sculpture, premiered at the Cognitive Technologies exhibit, San Francisco Exploratorium.</p>
-                    <div class="tags">
-                        <span class="tag">Interactive</span>
-                        <span class="tag">Cognitive</span>
-                        <span class="tag">Exploratorium</span>
+                    <div class="work-card-content">
+                        <h3>The Fountain of Pon Lai</h3>
+                        <span class="explore-link">Explore &rarr;</span>
                     </div>
                 </div>
 
@@ -1259,13 +1080,9 @@
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
-                    <h3 data-glitch="Electric DNA">Electric DNA</h3>
-                    <span class="year">2013</span>
-                    <p>Mixed medium PVC and custom lighting tube sculpture for All Night Dance Celebration (ANDC). Inspired by DNA strands of life, dance, and technology. Full design and fabrication.</p>
-                    <div class="tags">
-                        <span class="tag">Festival</span>
-                        <span class="tag">ANDC</span>
-                        <span class="tag">Biomorphic</span>
+                    <div class="work-card-content">
+                        <h3>Electric DNA</h3>
+                        <span class="explore-link">Explore &rarr;</span>
                     </div>
                 </div>
 
@@ -1275,12 +1092,9 @@
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
-                    <h3 data-glitch="Kryptonicity">Kryptonicity</h3>
-                    <span class="year">2012</span>
-                    <p>Mixed medium frosted acrylic, metal, and lighting sculpture inspired by 1970s sci-fi aesthetic and art deco. Uniting form and function in crystalline structures.</p>
-                    <div class="tags">
-                        <span class="tag">Retro-Futurism</span>
-                        <span class="tag">Art Deco</span>
+                    <div class="work-card-content">
+                        <h3>Kryptonicity</h3>
+                        <span class="explore-link">Explore &rarr;</span>
                     </div>
                 </div>
 
@@ -1290,12 +1104,9 @@
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
-                    <h3 data-glitch="Blooming VU">Blooming VU</h3>
-                    <span class="year">2012</span>
-                    <p>Mixed medium PVC and custom lighting tube sculpture created in 6 days for ANDC. Inspired by the intersection of music, nature, and technology. Rapid fabrication masterwork.</p>
-                    <div class="tags">
-                        <span class="tag">Rapid Build</span>
-                        <span class="tag">Music Visual</span>
+                    <div class="work-card-content">
+                        <h3>Blooming VU</h3>
+                        <span class="explore-link">Explore &rarr;</span>
                     </div>
                 </div>
 
@@ -1310,13 +1121,9 @@
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
-                    <h3 data-glitch="Mens Amplio">Mens Amplio</h3>
-                    <span class="year">2013 • Don Cain</span>
-                    <p>Burning Man installation. Mixed medium acrylic, metal, fire, and interactive cognitive lightning inspired by brain neurons/axons. Designed custom lighting and core sequence. Led team of 10 volunteers, 200+ fixtures.</p>
-                    <div class="tags">
-                        <span class="tag collab">Burning Man</span>
-                        <span class="tag collab">Team Lead</span>
-                        <span class="tag collab">Neuroscience</span>
+                    <div class="work-card-content">
+                        <h3>Mens Amplio</h3>
+                        <span class="explore-link">Explore &rarr;</span>
                     </div>
                 </div>
 
@@ -1326,12 +1133,9 @@
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
-                    <h3 data-glitch="Zoa">Zoa</h3>
-                    <span class="year">2012 • Flux Foundation</span>
-                    <p>Burning Man installation. Mixed medium wood and interactive lighting inspired by sea creatures. Designed custom fixtures, assisted organic breath lighting sequence. Led team of 10, 100+ fixtures.</p>
-                    <div class="tags">
-                        <span class="tag collab">Flux Foundation</span>
-                        <span class="tag collab">Organic Motion</span>
+                    <div class="work-card-content">
+                        <h3>Zoa</h3>
+                        <span class="explore-link">Explore &rarr;</span>
                     </div>
                 </div>
 
@@ -1341,12 +1145,9 @@
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
-                    <h3 data-glitch="Brollyflock">Brollyflock</h3>
-                    <span class="year">2011 • Flux Foundation</span>
-                    <p>Electric Daisy Carnival. Mixed medium steel, LEDs, fire, and nylon interactive umbrella-like sculpture. Key design of metal jig/form, managed shop/warehouse logistics, onsite assembly advisor.</p>
-                    <div class="tags">
-                        <span class="tag collab">EDC</span>
-                        <span class="tag collab">Logistics</span>
+                    <div class="work-card-content">
+                        <h3>Brollyflock</h3>
+                        <span class="explore-link">Explore &rarr;</span>
                     </div>
                 </div>
 
@@ -1356,13 +1157,9 @@
                         <div class="clickable-overlay"></div>
                         <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                     </div>
-                    <h3 data-glitch="Temple of Flux">Temple of Flux</h3>
-                    <span class="year">2010 • Flux Foundation</span>
-                    <p>Burning Man Temple (21,000 sq ft). Wood and lighting sculpture. Co-designed outside surface, developed modular "thatches" process, led team of 30 building 700+ thatches. Managed shop/warehouse logistics.</p>
-                    <div class="tags">
-                        <span class="tag collab">Temple</span>
-                        <span class="tag collab">Massive Scale</span>
-                        <span class="tag collab">700+ Units</span>
+                    <div class="work-card-content">
+                        <h3>Temple of Flux</h3>
+                        <span class="explore-link">Explore &rarr;</span>
                     </div>
                 </div>
             </div>
@@ -1377,13 +1174,9 @@
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
-                <h3>Unity Sanctuary</h3>
-                <span class="year">2021</span>
-                <p>Debuted at Singularity University Australia Global Summit. The original version of the Unity Sanctuary, designed as a 'Wise Mirror'—a digital space for reflection, connection, and higher consciousness.</p>
-                <div class="tags">
-                    <span class="tag">VR</span>
-                    <span class="tag">AltspaceVR</span>
-                    <span class="tag">Sacred Space</span>
+                <div class="work-card-content">
+                    <h3>Unity Sanctuary</h3>
+                    <span class="explore-link">Explore &rarr;</span>
                 </div>
             </div>
 
@@ -1393,13 +1186,9 @@
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
-                <h3>The Connected Experience</h3>
-                <span class="year">2021</span>
-                <p>A prototype demonstration of 'The Connected Experience,' exploring how digital proximity and shared virtual space can foster genuine human connection.</p>
-                <div class="tags">
-                    <span class="tag">Interactive VR</span>
-                    <span class="tag">Biofeedback</span>
-                    <span class="tag">Music Integration</span>
+                <div class="work-card-content">
+                    <h3>The Connected Experience</h3>
+                    <span class="explore-link">Explore &rarr;</span>
                 </div>
             </div>
 
@@ -1415,13 +1204,9 @@
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
-                <h3>Wise Mirror</h3>
-                <span class="year">2020 • AltspaceVR/Unity</span>
-                <p>Immersive floating islands in space connecting community through artistic expression and biofeedback in AltspaceVR/Unity. Sacred geometry 3D modeling (Fusion 360/Blender), universe environment layout in Unity, storyline and superhero character development.</p>
-                <div class="tags">
-                    <span class="tag">Unity Engine</span>
-                    <span class="tag">3D Modeling</span>
-                    <span class="tag">Narrative Design</span>
+                <div class="work-card-content">
+                    <h3>Wise Mirror</h3>
+                    <span class="explore-link">Explore &rarr;</span>
                 </div>
             </div>
 
@@ -1431,10 +1216,9 @@
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
-                <div class="card-content">
+                <div class="work-card-content">
                     <h3>TESOL VR Worlds</h3>
-                    <p>Educational VR environments & Teaching Demos.</p>
-                    <div class="tags"><span class="tag" style="border-color: #d4af37; color: #d4af37;">Singularity U</span><span class="tag">Education</span></div>
+                    <span class="explore-link">Explore &rarr;</span>
                 </div>
             </div>
 
@@ -1444,13 +1228,9 @@
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
-                <h3>Heartland VR</h3>
-                <span class="year">2023 • Spatial.io</span>
-                <p>Immersive and interactive VR experience on Spatial.io connecting and educating communities in sustainable and regenerative practices. Lead Unity developer for layout and programming. 3D modeling in Fusion 360 and Blender.</p>
-                <div class="tags">
-                    <span class="tag">Spatial.io</span>
-                    <span class="tag">Unity Dev</span>
-                    <span class="tag">Regen Education</span>
+                <div class="work-card-content">
+                    <h3>Heartland VR</h3>
+                    <span class="explore-link">Explore &rarr;</span>
                 </div>
             </div>
         </div>
@@ -1463,13 +1243,10 @@
             
             <div style="max-width: 800px; margin: 0 auto; color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; text-align: center;">
                 <p style="margin-bottom: 1.5rem;">
-                    Shaped by a lifelong connection to sound and the unseen currents of expression, my practice awakened in the underground electronic music scene. I treat light not just as a visual medium, but as a frequency for initiation—braiding technology and synchronicity to create spaces of deep resonance.
-                </p>
-                <p style="margin-bottom: 1.5rem;">
-                    This path opened the gate to large-scale installation art, where I construct Temples and light sculptures designed to be inhabited, not just viewed. From the dust of Burning Man to digital metaverse sanctuaries, my work builds containers for community coherence and human connection.
+                    My practice is an exploration of light as a language. Starting in the underground electronic music scene, I began to see sound and light not as decoration, but as a medium for transformation.
                 </p>
                 <p>
-                    Today, my work has evolved into the design of living systems. I am now anchoring a regenerative demonstration site, weaving local food systems and immersive design into a new kind of art form: a living blueprint for resilience and thriving worlds.
+                    I construct large-scale temples and light sculptures designed to be inhabited—containers for community coherence and personal resonance. Whether through physical steel and LED or digital metaverse sanctuaries, my work seeks to bridge the seen and the unseen.
                 </p>
             </div>
         </div>
@@ -1501,28 +1278,14 @@
     <div class="project-modal" id="project-modal">
         <button class="modal-close" onclick="closeModal()">&times;</button>
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-title"></h2>
-                <div id="modal-meta" style="color: var(--gold-dune); font-size: 1.2rem; margin-top: 1rem;"></div>
+            <!-- Left Side: Gallery -->
+            <div class="modal-gallery-section" id="modal-gallery-container">
+                <!-- Populated by JS -->
             </div>
 
-            <div class="modal-body">
-                <div class="modal-images">
-                    <!-- This is a placeholder so the parentNode selector works on a fresh modal -->
-                    <div class="modal-image-main" style="display: none;"></div>
-                </div>
-
-                <div class="modal-details">
-                    <h3>Project Overview</h3>
-                    <p id="modal-desc"></p>
-
-                    <div class="modal-description">
-                        <h4>Details</h4>
-                        <ul id="modal-specs" style="list-style: none; padding-left: 0;">
-                            <!-- Populated by JS -->
-                        </ul>
-                    </div>
-                </div>
+            <!-- Right Side: Narrative -->
+            <div class="modal-narrative-section" id="modal-narrative-container">
+                <!-- Populated by JS -->
             </div>
         </div>
     </div>
@@ -1535,7 +1298,9 @@
                 title: 'Life Within Itself',
                 year: '2017',
                 category: 'Solo Physical',
-                desc: 'Mixed medium brass, wood, and frosted acrylic lighting sculpture inspired by sacred geometry. A meditation on interconnection and divine proportion expressed through the Flower of Life pattern.',
+                concept: 'A meditation on interconnection and divine proportion expressed through the Flower of Life pattern. This piece explores how sacred geometry can be rendered in light to create a focal point for contemplation.',
+                contribution: 'Lead Artist, Designer, Fabricator',
+                materials: 'Brass, Wood, Frosted Acrylic, Custom LEDs',
                 image: 'photos/Life Within Itself/fullsize/Live Within Itself Finished 01.jpg',
                 materials: 'Brass, Wood, Frosted Acrylic, Custom LEDs',
                 location: 'Private Collection',
@@ -1614,7 +1379,9 @@
                 title: 'The Fountain of Pon Lai',
                 year: '2015',
                 category: 'Solo Physical',
-                desc: 'The Path of Flow. Mixed medium frosted acrylic and interactive cognitive lighting sculpture, premiered at the Cognitive Technologies exhibit, San Francisco Exploratorium.',
+                concept: 'The Path of Flow. An interactive cognitive lighting sculpture that responds to the presence of viewers, mimicking the fluid dynamics of water through light.',
+                contribution: 'Lead Artist, Designer',
+                materials: 'Frosted Acrylic, Interactive LEDs, Sensors',
                 image: 'photos/The Fountain of Pon Lai- The Path of Flow/fullsize/The Fountain of Pon Lai- The Path of Flow 01.jpg',
                 materials: 'Frosted Acrylic, Interactive LEDs, Sensors',
                 location: 'San Francisco Exploratorium (2015)',
@@ -1655,7 +1422,9 @@
                 title: 'Shamayim',
                 year: '2015',
                 category: 'Solo Physical',
-                desc: 'The Path of Enlightenment. Prototype from the Unity series: The Path of Us All. Exploring transcendence through geometric light patterns and Hebrew mystical concepts.',
+                concept: 'The Path of Enlightenment. A prototype exploring transcendence through geometric light patterns and Hebrew mystical concepts, representing the "heavens" or "sky".',
+                contribution: 'Lead Artist, Fabrication',
+                materials: 'Mixed Medium, LEDs',
                 image: 'photos/Shamayim-The Path of Enlightenment/fullsize/Shamayim 01.jpg',
                 materials: 'Mixed Medium, LEDs',
                 location: 'Private Collection',
@@ -1682,7 +1451,9 @@
                 title: 'Electric DNA',
                 year: '2013',
                 category: 'Solo Physical',
-                desc: 'Mixed medium PVC and custom lighting tube sculpture for All Night Dance Celebration (ANDC). Inspired by DNA strands of life, dance, and technology. Full design and fabrication.',
+                concept: 'Inspired by the fundamental strands of life, dance, and technology. A biomorphic form that bridges the organic and the electronic for a festival environment.',
+                contribution: 'Lead Artist, Fabrication',
+                materials: 'PVC, Custom Lighting Tubes, LEDs',
                 image: 'photos/Electric DNA/fullsize/Electric DNA 01.jpg',
                 materials: 'PVC, Custom Lighting Tubes, LEDs',
                 location: 'ANDC Festival',
@@ -1714,7 +1485,9 @@
                 title: 'Kryptonicity',
                 year: '2012',
                 category: 'Solo Physical',
-                desc: 'Mixed medium frosted acrylic, metal, and lighting sculpture inspired by 1970s sci-fi aesthetic and art deco. Uniting form and function in crystalline structures that evoke Superman\'s Fortress of Solitude.',
+                concept: 'Uniting form and function in crystalline structures that evoke Superman\'s Fortress of Solitude. A blend of 1970s sci-fi aesthetic and art deco lines.',
+                contribution: 'Lead Artist, Fabrication',
+                materials: 'Frosted Acrylic, Metal, LEDs',
                 image: 'photos/Kryptonicity/fullsize/Kryptonicity 01.jpg',
                 materials: 'Frosted Acrylic, Metal, LEDs',
                 location: 'Private Collection',
@@ -1746,7 +1519,9 @@
                 title: 'Blooming VU',
                 year: '2012',
                 category: 'Solo Physical',
-                desc: 'Mixed medium PVC and custom lighting tube sculpture created in 6 days for ANDC. Inspired by the intersection of music, nature, and technology. Rapid fabrication masterwork.',
+                concept: 'A rapid fabrication masterwork inspired by the intersection of music, nature, and technology. Visualizing the blooming of sound into light.',
+                contribution: 'Lead Artist, Fabrication',
+                materials: 'PVC, Custom Lighting Tubes',
                 image: 'photos/Blooming VU/fullsize/Blooming VU 01.jpg',
                 materials: 'PVC, Custom Lighting Tubes',
                 location: 'ANDC Festival',
@@ -1770,7 +1545,9 @@
                 title: 'Buddleia Orgasmica',
                 year: '2012',
                 category: 'Solo Physical',
-                desc: 'Prototype for Burning Man. Inspired by Buddleia flower (butterfly bush) and collaborative music creation, designed with sonar sensors for motion interaction - a digital theremin of light.',
+                concept: 'A digital theremin of light inspired by the Buddleia flower. Designed to allow collaborative music creation through motion interaction.',
+                contribution: 'Concept Design, Prototyping',
+                materials: 'Mixed Medium, Sonar Sensors, Interactive LEDs',
                 image: null,
                 materials: 'Mixed Medium, Sonar Sensors, Interactive LEDs',
                 location: 'Prototype',
@@ -1789,7 +1566,9 @@
                 title: 'Mens Amplio',
                 year: '2013',
                 category: 'Collaborative Physical',
-                desc: 'Burning Man installation by Don Cain. Mixed medium acrylic, metal, fire, and interactive cognitive lightning inspired by brain neurons and axons. Designed custom lighting and core sequence. Led team of 10 volunteers installing 200+ fixtures.',
+                concept: 'Inspired by brain neurons and axons, this installation visualized cognitive processes through fire and light. A massive representation of the expanded mind.',
+                contribution: 'Lighting Design, Core Sequence Programming, Team Lead',
+                materials: 'Acrylic, Metal, Fire, Interactive Lighting',
                 image: 'photos/Mens Amplio/fullsize/Mens Amplio 01.jpg',
                 materials: 'Acrylic, Metal, Fire, Interactive Lighting',
                 location: 'Burning Man 2013',
@@ -1823,7 +1602,9 @@
                 title: 'Zoa',
                 year: '2012',
                 category: 'Collaborative Physical',
-                desc: 'Burning Man installation by Flux Foundation. Mixed medium wood and interactive lighting inspired by sea creatures. Designed custom fixtures and assisted organic breath lighting sequence. Led team of 10 installing 100+ fixtures.',
+                concept: 'A field of bioluminescent sea creatures brought to the desert. The lighting sequence mimicked organic breathing patterns to bring the static wood forms to life.',
+                contribution: 'Custom Fixture Design, Lighting Sequence, Team Lead',
+                materials: 'Wood, Custom LEDs, Interactive Systems',
                 image: 'photos/Zoa/fullsize/Zoa 01.jpg',
                 materials: 'Wood, Custom LEDs, Interactive Systems',
                 location: 'Burning Man 2012',
@@ -1863,7 +1644,9 @@
                 title: 'Brollyflock',
                 year: '2011',
                 category: 'Collaborative Physical',
-                desc: 'Electric Daisy Carnival installation by Flux Foundation. Mixed medium steel, LEDs, fire, and nylon interactive umbrella-like sculpture. Key design of metal jig/form, managed shop/warehouse logistics, onsite assembly advisor.',
+                concept: 'A whimsical flock of umbrella-like sculptures providing shade by day and fire/light by night. A playful interactive environment for festival goers.',
+                contribution: 'Metal Jig Design, Logistics Management, Assembly Advisor',
+                materials: 'Steel, LEDs, Fire, Nylon',
                 image: 'photos/Brollyflock/fullsize/Brollyflock 01.jpg',
                 materials: 'Steel, LEDs, Fire, Nylon',
                 location: 'Electric Daisy Carnival 2011',
@@ -1886,7 +1669,9 @@
                 title: 'Temple of Flux',
                 year: '2010',
                 category: 'Collaborative Physical',
-                desc: 'Burning Man Temple (21,000 sq ft) by Flux Foundation. Monumental wood and lighting sculpture. Co-designed outside surface, developed modular "thatches" process, led team of 30 building 700+ thatches. Managed shop/warehouse logistics.',
+                concept: 'A monumental landscape of wood and light, designed as a non-denominational space for contemplation and release. The structure emerged from the desert floor like a geological formation.',
+                contribution: 'Co-design Exterior Surface, Modular Process Lead, Logistics',
+                materials: 'Wood, Lighting, Modular Components',
                 image: 'photos/Temple of Flux/fullsize/Temple of Flux 01.jpg',
                 materials: 'Wood, Lighting, Modular Components',
                 location: 'Burning Man 2010',
@@ -1917,7 +1702,9 @@
                 category: "VR / Digital",
                 type: "video",
                 videoId: "pVs19-YphAY", 
-                desc: "Debuted at Singularity University Australia Global Summit. The original version of the Unity Sanctuary, designed as a 'Wise Mirror'—a digital space for reflection, connection, and higher consciousness.",
+                concept: "Designed as a 'Wise Mirror'—a digital space for reflection, connection, and higher consciousness. A sanctuary blending sacred geometry with accessible virtual architecture.",
+                contribution: "VR Environment Design, 3D Modeling, Lighting",
+                materials: "VR Environment, 3D Assets, Lighting",
                 details: ["Event: Singularity U Australia Summit 2021", "Platform: Virtual Reality", "Concept: Digital Sanctuary"],
                 images: [],
                 materials: 'VR Environment, 3D Assets, Lighting',
@@ -1930,7 +1717,9 @@
                 category: "VR / Digital",
                 type: "video",
                 videoId: "REPLACE_WITH_ID",
-                desc: "A prototype demonstration of 'The Connected Experience,' exploring how digital proximity and shared virtual space can foster genuine human connection.",
+                concept: "Exploring how digital proximity and shared virtual space can foster genuine human connection through biofeedback and musical integration.",
+                contribution: "VR Prototyping, Biofeedback Integration",
+                materials: "VR Environment, Biofeedback Systems, Music Integration",
                 details: ["Event: Singularity U Australia Summit 2021", "Status: Prototype", "Focus: Social VR"],
                 images: [],
                 materials: 'VR Environment, Biofeedback Systems, Music Integration',
@@ -1943,7 +1732,9 @@
                 category: "VR / Education",
                 type: "video",
                 videoId: "pVs19-YphAY", // Main Montage Video
-                desc: "A montage of educational worlds created for TESOL. Below are specific teaching demonstrations featuring instructors Tina and Brian utilizing these immersive environments.",
+                concept: "Immersive environments designed for language acquisition, leveraging spatial memory and interactive context to enhance learning.",
+                contribution: "Environment Design, Educational Content Strategy",
+                materials: "VR Environment, Educational 3D Assets",
                 details: ["Use Case: Education / EdTech", "Instructors: Tina & Brian", "Goal: Immersive Language Learning"],
                 // The 5 Demo Videos
                 gallery: [
@@ -1960,7 +1751,9 @@
                 title: 'Heartland VR',
                 year: '2023',
                 category: 'Collaborative Digital',
-                desc: 'Immersive and interactive VR experience on Spatial.io connecting and educating communities in sustainable and regenerative practices. Lead Unity developer for layout and programming. 3D modeling in Fusion 360 and Blender.',
+                concept: 'Connecting and educating communities in sustainable and regenerative practices through an immersive virtual campus.',
+                contribution: 'Lead Unity Developer, Layout, Programming',
+                materials: 'Unity Engine, 3D Models, VR Environment',
                 image: null,
                 materials: 'Unity Engine, 3D Models, VR Environment',
                 location: 'Spatial.io Platform',
@@ -1981,7 +1774,9 @@
                 title: 'White Mirror',
                 year: '2020',
                 category: 'Collaborative Digital',
-                desc: 'Immersive floating islands in space connecting community through artistic expression and biofeedback in AltspaceVR/Unity. Sacred geometry 3D modeling (Fusion 360/Blender), universe environment layout in Unity, storyline and superhero character development.',
+                concept: 'Immersive floating islands in space connecting community through artistic expression. A universe built on sacred geometry and superhero narratives.',
+                contribution: '3D Modeling, Environment Layout, Narrative Design',
+                materials: 'Unity Engine, VR Assets, 3D Models',
                 image: null,
                 materials: 'Unity Engine, VR Assets, 3D Models',
                 location: 'AltspaceVR / Unity',
@@ -2039,83 +1834,76 @@
             currentProjectId = id;
             currentGalleryIndex = 0;
 
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-meta').innerText = `${data.year} | ${data.category}`;
-            document.getElementById('modal-desc').innerText = data.desc;
+            // 1. Populate Gallery (Left Side)
+            const galleryContainer = document.getElementById('modal-gallery-container');
+            let galleryHTML = '';
 
-            const mediaContainer = document.querySelector('.modal-images');
-            
+            // Main Video or Image
             if (data.type === 'video') {
-                mediaContainer.innerHTML = `
-                    <div class="video-container" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+                galleryHTML += `
+                    <div class="modal-gallery-item video-container" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
                         <iframe src="https://www.youtube.com/embed/${data.videoId}" 
                         style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" 
                         allowfullscreen></iframe>
                     </div>`;
             } else {
-                let html = `
-                    <div class="modal-image-main">
-                        <img id="modal-img" src="${data.image}" alt="${data.title}" onclick="toggleImageFullscreen(this)" style="cursor: zoom-in;">
+                if (data.image) {
+                    galleryHTML += `
+                    <div class="modal-gallery-item">
+                        <img src="${data.image}" alt="${data.title}" onclick="toggleImageFullscreen(this)" style="cursor: zoom-in;">
                     </div>`;
-                
-                const thumbs = data.thumbnails || data.images || [];
-                if (thumbs.length > 0) {
-                    html += `<div class="modal-gallery-wrapper">
-                                <button class="thumb-nav-btn" onclick="scrollModalGallery(-1)">&lt;</button>
-                                <div class="modal-image-gallery">`;
-                    for(let i=0; i<thumbs.length; i++) {
-                        html += `
-                            <div class="modal-image-thumb" onclick="changeModalImage(${i})">
-                                <img src="${thumbs[i]}" alt="Thumbnail">
-                            </div>`;
-                    }
-                    html += `   </div>
-                                <button class="thumb-nav-btn" onclick="scrollModalGallery(1)">&gt;</button>
-                             </div>`;
                 }
-                mediaContainer.innerHTML = html;
             }
 
-            const specsList = document.getElementById('modal-specs');
-            specsList.innerHTML = ''; 
-            data.details.forEach(item => {
-                const li = document.createElement('li');
-                li.innerHTML = `<span>&gt;</span> ${item}`;
-                specsList.appendChild(li);
-            });
-
-            // 4. Gallery Logic (New!)
-            // Check if modal-gallery container exists, if not create it dynamically
-            let gallerySection = document.getElementById('modal-gallery');
-            if (!gallerySection) {
-                gallerySection = document.createElement('div');
-                gallerySection.id = 'modal-gallery';
-                gallerySection.style.cssText = "display:none; margin-top: 3rem; border-top: 1px solid var(--grid-line); padding-top: 2rem;";
-                gallerySection.innerHTML = `<h3 style="color: var(--cyan-glow); font-family: 'Orbitron'; margin-bottom: 1.5rem;">Teaching Demonstrations</h3><div id="gallery-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;"></div>`;
-                document.querySelector('.modal-content').appendChild(gallerySection);
+            // Additional Images
+            const extraImages = data.images || [];
+            // Skip first image if it matches main image to avoid duplicate
+            const startIdx = (data.image && extraImages.length > 0 && data.image === extraImages[0]) ? 1 : 0;
+            
+            for(let i=startIdx; i<extraImages.length; i++) {
+                galleryHTML += `
+                    <div class="modal-gallery-item">
+                        <img src="${extraImages[i]}" alt="Detail ${i}" loading="lazy" onclick="toggleImageFullscreen(this)" style="cursor: zoom-in;">
+                    </div>`;
             }
             
-            const galleryContainer = document.getElementById('gallery-container');
-            
+            // Video Gallery (for TESOL etc)
             if (data.gallery && data.gallery.length > 0) {
-                gallerySection.style.display = 'block';
-                galleryContainer.innerHTML = ''; // Clear previous
-                
                 data.gallery.forEach(item => {
-                    const vidDiv = document.createElement('div');
-                    vidDiv.innerHTML = `
-                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border: 1px solid var(--grid-line); margin-bottom:0.5rem;">
+                    galleryHTML += `
+                        <div class="modal-gallery-item" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border: 1px solid #333;">
                             <iframe src="https://www.youtube.com/embed/${item.videoId}" 
                             style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" 
                             allowfullscreen></iframe>
                         </div>
-                        <p style="color:var(--text-muted); font-size:0.9rem;">${item.title}</p>
+                        <p style="color:#888; font-size:0.8rem; margin-top:0.5rem; margin-bottom: 2rem; font-family: Montserrat;">${item.title}</p>
                     `;
-                    galleryContainer.appendChild(vidDiv);
                 });
-            } else {
-                gallerySection.style.display = 'none';
             }
+            
+            galleryContainer.innerHTML = galleryHTML;
+
+            // 2. Populate Narrative (Right Side)
+            const narrativeContainer = document.getElementById('modal-narrative-container');
+            narrativeContainer.innerHTML = `
+                <h2 class="modal-title">${data.title}</h2>
+                <span class="modal-meta">${data.year} | ${data.category}</span>
+                
+                <div class="narrative-block">
+                    <span class="narrative-label">Concept</span>
+                    <p class="narrative-text">${data.concept || data.desc}</p>
+                </div>
+                
+                <div class="narrative-block">
+                    <span class="narrative-label">Contribution</span>
+                    <p class="narrative-text">${data.contribution || 'Lead Artist'}</p>
+                </div>
+                
+                <div class="narrative-block">
+                    <span class="narrative-label">Materials & Frequency</span>
+                    <p class="narrative-text">${data.materials}</p>
+                </div>
+            `;
 
             const modal = document.getElementById('project-modal');
             modal.style.display = 'block';
