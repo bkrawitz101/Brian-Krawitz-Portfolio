@@ -1103,10 +1103,7 @@
         /* Mobile Back Button for Modal */
         .modal-back-btn {
             display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            /* Position handled in media query */
             background: rgba(10, 10, 15, 0.95);
             backdrop-filter: blur(10px);
             color: var(--cyan-glow);
@@ -1145,6 +1142,37 @@
             }
 
             /* 1. Touch-Friendly Modals */
+            .project-modal.active {
+                display: flex;
+                flex-direction: column;
+                overflow-y: auto;
+                max-height: 100vh;
+            }
+
+            .modal-content {
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                order: 1;
+            }
+
+            .modal-gallery-section,
+            .modal-narrative-section {
+                height: auto !important;
+                padding: 20px;
+                overflow: visible;
+            }
+
+            .modal-gallery-item img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+
+            .modal-title {
+                font-size: 1.5rem !important;
+            }
+
             .modal-close {
                 width: 48px;
                 height: 48px;
@@ -1157,10 +1185,10 @@
 
             .modal-back-btn {
                 display: block;
-            }
-
-            .project-modal {
-                padding-bottom: 60px; /* Space for back button */
+                position: relative;
+                order: 2;
+                margin: 2rem 0;
+                width: 100%;
             }
 
             /* 2. Performance & Glows */
