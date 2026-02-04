@@ -2157,7 +2157,7 @@
                 year: "2021",
                 category: "VR / Education",
                 type: "video",
-                videoId: "pVs19-YphAY", // Main Montage Video
+                heroVideo: "pVs19-YphAY", // Main Montage Video
                 concept: "Immersive environments designed for language acquisition, leveraging spatial memory and interactive context to enhance learning.",
                 contribution: "Environment Design, Educational Content Strategy",
                 materials: "VR Environment, Educational 3D Assets",
@@ -2268,11 +2268,23 @@
             
             // 1. Hero Media (First item)
             galleryHTML += `<div class="gallery-hero">`;
-            if (data.heroVideo) {
+            
+            // Check for video (heroVideo ID or video URL in image field)
+            const isVideo = data.heroVideo || (data.image && (data.image.includes('youtube') || data.image.includes('vimeo')));
+
+            if (isVideo) {
+                let videoSrc = '';
+                if (data.heroVideo) {
+                    videoSrc = `https://www.youtube.com/embed/${data.heroVideo}?autoplay=1&mute=1&loop=1&playlist=${data.heroVideo}&controls=0&showinfo=0&rel=0`;
+                } else {
+                    // Fallback for direct URLs in image field
+                    videoSrc = data.image.includes('embed') ? data.image : data.image.replace('watch?v=', 'embed/');
+                    if (!videoSrc.includes('?')) videoSrc += '?autoplay=1&mute=1';
+                }
+
                 galleryHTML += `
                     <div class="media-container hero-media">
-                        <iframe src="https://www.youtube.com/embed/${data.heroVideo}?autoplay=1&mute=1&loop=1&playlist=${data.heroVideo}&controls=0&showinfo=0&rel=0" 
-                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe src="${videoSrc}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>`;
             } else if (data.image) {
                 lightboxImages.push(data.image);
