@@ -1296,6 +1296,7 @@
                 flex-direction: column;
                 height: auto;
                 order: 1;
+                padding-top: 10px;
             }
 
             .modal-title {
@@ -1320,6 +1321,19 @@
                 width: 100%;
             }
 
+            /* Mobile Spacing Overrides */
+            .info-header {
+                padding-top: 0 !important; /* Remove the large 4rem padding from tablet view */
+            }
+
+            .modal-title-large {
+                margin-top: 5px;
+            }
+
+            .modal-tech-footer {
+                margin-top: 10px;
+            }
+
             /* Mobile Gallery Button Style */
             #mobile-gallery-btn {
                 display: inline-block;
@@ -1334,7 +1348,7 @@
                 letter-spacing: 2px;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                margin: 2rem auto;
+                margin: 1rem auto;
                 box-sizing: border-box;
             }
             #mobile-gallery-btn:hover {
@@ -1694,7 +1708,7 @@
     <!-- Project Modal -->
     <div class="project-modal" id="project-modal">
         <button class="modal-close" onclick="closeModal()">&times;</button>
-        <div class="modal-back-btn" onclick="closeModal()">Back to Gallery</div>
+        <div class="modal-back-btn" onclick="closeModal()">◢◤ BACK TO THE GRID</div>
         <div class="modal-content">
             <div id="modal-dynamic-content"></div>
         </div>
