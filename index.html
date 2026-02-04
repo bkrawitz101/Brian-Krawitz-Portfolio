@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[en]lightening concepts | Brian Krawitz | Light Sculptor</title>
     <meta name="description" content="The artistic portfolio of Brian Krawitz. Exploring the intersection of light, sacred geometry, and digital realms through immersive installations and XR environments.">
     <meta property="og:title" content="[en]lightening concepts | Brian Krawitz">
@@ -12,9 +12,6 @@
     <meta property="og:url" content="https://briankrawitz.com">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;700&family=Montserrat:wght@300;400;600&display=swap');
-
-        /* Temporary Debugger - Remove after fixing layout issues */
-        * { outline: 1px solid red !important; }
 
         :root {
             /* Tron/Blade Runner neon palette */
@@ -51,8 +48,6 @@
             color: var(--text-primary);
             line-height: 1.6;
             touch-action: pan-y;
-            word-break: break-word;
-            overflow-wrap: break-word;
         }
 
         img {
@@ -622,31 +617,33 @@
 
         /* Emergency alert banner */
         .emergency-banner {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, 
-                rgba(255, 0, 85, 0.9) 0%,
-                rgba(255, 107, 53, 0.9) 50%,
-                rgba(255, 0, 85, 0.9) 100%);
-            color: var(--void-black);
+            position: relative;
+            width: 100%;
+            background: #2b0000;
+            color: #ff0055;
             font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 0.5rem;
-            z-index: 200;
-            letter-spacing: 3px;
-            border-top: 2px solid var(--cyan-glow);
-            border-bottom: 2px solid var(--cyan-glow);
-            animation: emergencyPulse 2s infinite, maxHeadroom 5s infinite;
-            text-transform: uppercase;
-            display: none;
+            font-size: 14px;
+            padding: 0.5rem 0;
+            z-index: 2000;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: bannerFadePulse 3s infinite;
         }
 
-        .emergency-banner.active {
-            display: block;
+        .emergency-banner span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: tickerScroll 20s linear infinite;
+        }
+
+        @keyframes bannerFadePulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; text-shadow: 0 0 8px #ff0055; }
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
         }
 
         /* Enhanced hero with RGB split */
@@ -852,7 +849,6 @@
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
@@ -861,7 +857,6 @@
             z-index: 2000;
             display: none;
             overflow-y: auto;
-            overflow-x: hidden !important;
             animation: modalFadeIn 0.3s ease;
         }
 
@@ -1393,7 +1388,7 @@
     <div class="grid-bg"></div>
     <div class="scanline"></div>
     <div class="static-overlay"></div>
-    <div class="emergency-banner">◢◤ INCOMING TRANSMISSION ◢◤ [EN]LIGHTENING CONCEPTS ◢◤ SIGNAL ACQUIRED ◢◤</div>
+    <div class="emergency-banner"><span>◢◤ INCOMING TRANSMISSION ◢◤ [EN]LIGHTENING CONCEPTS ◢◤ SIGNAL ACQUIRED ◢◤ INCOMING TRANSMISSION ◢◤ [EN]LIGHTENING CONCEPTS ◢◤</span></div>
 
     <header>
         <nav class="container">
@@ -1682,12 +1677,10 @@
                 title: 'Life Within Itself',
                 year: '2017',
                 category: 'Solo Physical',
-                heroVideo: 'pVs19-YphAY', // Placeholder for cinematic loop
                 concept: 'A meditation on interconnection and divine proportion expressed through the Flower of Life pattern. This piece explores how sacred geometry can be rendered in light to create a focal point for contemplation.',
                 contribution: 'Lead Artist, Designer, Fabricator',
                 materials: 'Brass, Wood, Frosted Acrylic, Custom LEDs',
                 image: 'photos/Life Within Itself/fullsize/Live Within Itself Finished 01.jpg',
-                materials: 'Brass, Wood, Frosted Acrylic, Custom LEDs',
                 location: 'Private Collection',
                 details: [
                     'Inspired by Flower of Life sacred geometry pattern',
@@ -2087,7 +2080,7 @@
                 category: "VR / Digital",
                 type: "video",
                 xrLink: "https://sketchfab.com/models/442c548d94744641ba879b6fab0a422e/embed", // Placeholder XR embed
-                videoId: "pVs19-YphAY", 
+                videoId: "REPLACE_WITH_ID", 
                 concept: "Designed as a 'Wise Mirror'—a digital space for reflection, connection, and higher consciousness. A sanctuary blending sacred geometry with accessible virtual architecture.",
                 contribution: "VR Environment Design, 3D Modeling, Lighting",
                 materials: "VR Environment, 3D Assets, Lighting",
@@ -2375,7 +2368,7 @@
             setTimeout(() => {
                 modal.style.display = 'none';
             }, 300);
-            document.body.style.overflow = '';
+            document.body.style.overflow = 'auto';
         }
 
         // Lightbox Functions
