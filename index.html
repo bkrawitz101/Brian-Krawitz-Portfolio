@@ -1278,6 +1278,11 @@
                 scroll-margin-top: 100px;
             }
 
+            .project-modal,
+            .modal-content {
+                overflow-x: hidden;
+            }
+
             /* 1. Touch-Friendly Modals */
             .project-modal.active {
                 display: flex;
@@ -1317,9 +1322,10 @@
 
             /* Mobile Gallery Button Style */
             #mobile-gallery-btn {
-                display: block;
-                width: 100%;
-                padding: 1rem;
+                display: inline-block;
+                max-width: 260px;
+                width: auto;
+                padding: 12px 24px;
                 background: transparent;
                 border: 1px solid var(--cyan-glow);
                 color: var(--cyan-glow);
@@ -1328,7 +1334,8 @@
                 letter-spacing: 2px;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                margin-top: 1rem;
+                margin: 2rem auto;
+                box-sizing: border-box;
             }
             #mobile-gallery-btn:hover {
                 background: rgba(0, 243, 255, 0.1);
