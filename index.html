@@ -37,12 +37,22 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body {
             font-family: 'Rajdhani', sans-serif;
             background: var(--void-black);
             color: var(--text-primary);
-            overflow-x: hidden;
             line-height: 1.6;
+            touch-action: pan-y;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
         }
 
         /* Clean Scrollbars */
