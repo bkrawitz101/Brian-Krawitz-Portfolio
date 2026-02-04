@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>[en]lightening concepts | Brian Krawitz | Light Sculptor</title>
     <meta name="description" content="The artistic portfolio of Brian Krawitz. Exploring the intersection of light, sacred geometry, and digital realms through immersive installations and XR environments.">
     <meta property="og:title" content="[en]lightening concepts | Brian Krawitz">
@@ -12,6 +12,9 @@
     <meta property="og:url" content="https://briankrawitz.com">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;700&family=Montserrat:wght@300;400;600&display=swap');
+
+        /* Temporary Debugger - Remove after fixing layout issues */
+        * { outline: 1px solid red !important; }
 
         :root {
             /* Tron/Blade Runner neon palette */
@@ -48,6 +51,8 @@
             color: var(--text-primary);
             line-height: 1.6;
             touch-action: pan-y;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         img {
@@ -847,6 +852,7 @@
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
@@ -855,6 +861,7 @@
             z-index: 2000;
             display: none;
             overflow-y: auto;
+            overflow-x: hidden !important;
             animation: modalFadeIn 0.3s ease;
         }
 
@@ -988,6 +995,48 @@
             display: none;
         }
 
+        /* Desktop Gallery Tracker */
+        .gallery-tracker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 2px;
+            background: rgba(255,255,255,0.1);
+            z-index: 2005;
+            display: none;
+        }
+
+        .gallery-progress {
+            width: 100%;
+            height: 0%;
+            background: var(--cyan-glow);
+            box-shadow: 0 0 10px var(--cyan-glow);
+            transition: height 0.1s linear;
+        }
+
+        .scroll-hint {
+            position: fixed;
+            bottom: 2rem;
+            left: 30%; /* Center of 60% gallery column */
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid var(--cyan-glow);
+            border-bottom: 2px solid var(--cyan-glow);
+            transform: translateX(-50%) rotate(45deg);
+            animation: pulseArrow 2s infinite;
+            z-index: 2005;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes pulseArrow {
+            0% { opacity: 0.3; transform: translateX(-50%) rotate(45deg) translate(-5px, -5px); }
+            50% { opacity: 1; transform: translateX(-50%) rotate(45deg) translate(0, 0); }
+            100% { opacity: 0.3; transform: translateX(-50%) rotate(45deg) translate(-5px, -5px); }
+        }
+
         /* --- End Split Layout --- */
 
         .narrative-block {
@@ -1118,6 +1167,10 @@
         }
 
         @media (max-width: 968px) {
+            .gallery-tracker, .scroll-hint {
+                display: none !important;
+            }
+
             .modal-content {
                 grid-template-columns: 1fr;
                 display: block;
@@ -2276,7 +2329,11 @@
             // Combine into Split Layout
             const fullHTML = `
                 <div class="modal-split-layout">
-                    <div class="modal-gallery">${galleryHTML}</div>
+                    <div class="modal-gallery">
+                        <div class="gallery-tracker"><div class="gallery-progress"></div></div>
+                        ${galleryHTML}
+                        <div class="scroll-hint"></div>
+                    </div>
                     <div class="modal-info">${infoHTML}</div>
                 </div>`;
 
@@ -2285,6 +2342,31 @@
             const modal = document.getElementById('project-modal');
             modal.style.display = 'block';
             setTimeout(() => modal.classList.add('active'), 10);
+
+            // Scroll Tracker Logic
+            const tracker = modal.querySelector('.gallery-progress');
+            const hint = modal.querySelector('.scroll-hint');
+            
+            // Reset hint visibility for desktop
+            if (window.innerWidth > 968 && hint) {
+                hint.style.opacity = '1';
+                // Also show tracker
+                const trackerContainer = modal.querySelector('.gallery-tracker');
+                if(trackerContainer) trackerContainer.style.display = 'block';
+                hint.style.display = 'block';
+            }
+
+            modal.onscroll = () => {
+                const scrollTop = modal.scrollTop;
+                const docHeight = modal.scrollHeight - modal.clientHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                
+                if (tracker) tracker.style.height = `${scrollPercent}%`;
+                
+                if (hint && scrollTop > 50) {
+                    hint.style.opacity = '0';
+                }
+            };
         }
 
         function closeModal() {
