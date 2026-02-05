@@ -412,13 +412,6 @@
             letter-spacing: 1px;
         }
 
-        .work-card .year {
-            display: block;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
         .explore-link {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
@@ -431,6 +424,11 @@
         .work-card:hover .explore-link {
             color: var(--text-primary);
             text-shadow: 0 0 8px var(--cyan-glow);
+        }
+
+        /* Match the context line color to the card title */
+        .work-card p:nth-of-type(2) {
+            color: #F5F5F5 !important;
         }
 
         /* Contact Section */
@@ -1486,7 +1484,8 @@
                             <h3>Life Within Itself</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <span class="year">2017 | Sacred geometry light sculpture | Burning Man Memorial Piece</span>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Sacred geometry light sculpture.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Burning Man Memorial Piece</p>
                     </div>
                 </div>
 
@@ -1501,7 +1500,8 @@
                             <h3>The Fountain of Pon Lai</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <span class="year">2015 | Interactive cognitive lighting sculpture | Exploratorium</span>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Interactive cognitive lighting sculpture.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Exploratorium 2015</p>
                     </div>
                 </div>
 
@@ -1516,7 +1516,8 @@
                             <h3>Electric DNA</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <span class="year">2013 | Biomorphic DNA sculpture for ANDC | Festival Installation</span>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Biomorphic DNA sculpture for ANDC.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Festival Installation 2013</p>
                     </div>
                 </div>
 
@@ -1531,7 +1532,8 @@
                             <h3>Kryptonicity</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <span class="year">2012 | Sci-fi aesthetic crystalline sculpture | Art Deco Retro-Futurism</span>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Sci-fi aesthetic crystalline sculpture.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Art Deco Retro-Futurism</p>
                     </div>
                 </div>
 
@@ -1546,7 +1548,8 @@
                             <h3>Blooming VU</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <span class="year">2012 | Rapid fabrication music visualization | ANDC 6-Day Build</span>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Rapid fabrication music visualization.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">ANDC 6-Day Build</p>
                     </div>
                 </div>
 
@@ -1566,7 +1569,8 @@
                             <h3>Mens Amplio</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <span class="year">2013 | Don Cain | Neural network installation | Burning Man | Design Lead</span>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Neural network installation.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Burning Man 2013 | Design Lead</p>
                     </div>
                 </div>
 
@@ -1581,7 +1585,8 @@
                             <h3>Zoa</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <span class="year">2012 | Flux Foundation | Deep sea bioluminescent installation | Burning Man | Lighting Design Lead</span>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Deep sea bioluminescent installation.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Burning Man 2012 | Lighting Design Lead</p>
                     </div>
                 </div>
 
@@ -1596,7 +1601,8 @@
                             <h3>Brollyflock</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <span class="year">2011 | Flux Foundation | Interactive umbrella flock | Electric Daisy Carnival</span>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Interactive umbrella flock at EDC.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Electric Daisy Carnival 2011</p>
                     </div>
                 </div>
 
@@ -1611,7 +1617,8 @@
                             <h3>Temple of Flux</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <span class="year">2010 | Flux Foundation | Massive canyon-like installation | Burning Man Temple | Project Lead</span>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Massive canyon-like installation.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Burning Man Temple 2010 | Project Lead</p>
                     </div>
                 </div>
             </div>
@@ -1627,6 +1634,8 @@
                             style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" 
                             allowfullscreen></iframe>
                     </div>
+                    <div class="clickable-overlay"></div>
+                    <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
                 <div class="work-card-content" style="display: block;">
                     <h3>Unity Sanctuary</h3>
@@ -1639,14 +1648,22 @@
             </div>
 
             <div class="work-card" onclick="openModal('connected-experience')">
-                <div class="work-image">
-                    <img src="https://placehold.co/600x400/000000/00f3ff?text=Connected+Experience" alt="Connected Experience" loading="lazy">
+                <div class="work-image" style="height: auto;">
+                    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+                        <iframe src="https://www.youtube.com/embed/KdBUe7cdMow?si=UMnaZcyUYNbjXJvi" title="YouTube video player" 
+                            style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
-                <div class="work-card-content">
-                    <h3>The Connected Experience</h3>
-                    <span class="explore-link">Explore &rarr;</span>
+                <div class="work-card-content" style="display: block;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>The Connected Experience</h3>
+                        <span class="explore-link">Explore &rarr;</span>
+                    </div>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Immersive VR connected environments.</p>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Spatial visualization and interactive exploration.</p>
                 </div>
             </div>
 
@@ -1663,6 +1680,8 @@
                             style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" 
                             allowfullscreen></iframe>
                     </div>
+                    <div class="clickable-overlay"></div>
+                    <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
                 <div class="work-card-content" style="display: block;">
                     <h3>Wise Mirror</h3>
@@ -1680,9 +1699,13 @@
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
-                <div class="work-card-content">
-                    <h3>TESOL VR Worlds</h3>
-                    <span class="explore-link">Explore &rarr;</span>
+                <div class="work-card-content" style="display: block;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>TESOL VR Worlds</h3>
+                        <span class="explore-link">Explore &rarr;</span>
+                    </div>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Virtual reality language learning platform.</p>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Interactive English education in 3D spaces.</p>
                 </div>
             </div>
 
@@ -1692,9 +1715,13 @@
                     <div class="clickable-overlay"></div>
                     <div class="terminal-badge">&gt; ACCESS_MEDIA<span class="blink-cursor">_</span></div>
                 </div>
-                <div class="work-card-content">
-                    <h3>Heartland VR</h3>
-                    <span class="explore-link">Explore &rarr;</span>
+                <div class="work-card-content" style="display: block;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>Heartland VR</h3>
+                        <span class="explore-link">Explore &rarr;</span>
+                    </div>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Regenerative Virtual Twin.</p>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Heartland Collective</p>
                 </div>
             </div>
         </div>
@@ -2188,7 +2215,7 @@
                 year: "2021",
                 category: "VR / Digital",
                 type: "video",
-                videoId: "REPLACE_WITH_ID",
+                videoId: "KdBUe7cdMow",
                 concept: "Exploring how digital proximity and shared virtual space can foster genuine human connection through biofeedback and musical integration.",
                 contribution: "VR Prototyping, Biofeedback Integration",
                 materials: "VR Environment, Biofeedback Systems, Music Integration",
