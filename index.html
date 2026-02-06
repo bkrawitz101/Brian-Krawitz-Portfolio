@@ -10,6 +10,7 @@
     <meta property="og:image" content="social-preview.jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://briankrawitz.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;700&family=Montserrat:wght@300;400;600&display=swap');
 
@@ -413,6 +414,7 @@
         }
 
         .explore-link {
+            display: none;
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             color: var(--cyan-glow);
@@ -470,7 +472,9 @@
         }
 
         .contact-item a:hover {
-            text-decoration: underline;
+            color: var(--text-primary) !important;
+            transform: translateY(-3px);
+            text-shadow: 0 0 15px var(--cyan-glow);
         }
 
         /* Footer */
@@ -1488,7 +1492,7 @@
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
                         <p style="color: var(--text-muted); margin: 0.5rem 0;">Sacred geometry light sculpture.</p>
-                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Burning Man Memorial Piece</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Burning Man 2017 Memorial Piece</p>
                     </div>
                 </div>
 
@@ -1620,8 +1624,8 @@
                             <h3>Temple of Flux</h3>
                             <span class="explore-link">Explore &rarr;</span>
                         </div>
-                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Massive canyon-like installation.</p>
-                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Burning Man Temple 2010 | Project Lead</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Massive canyon inspired installation.</p>
+                        <p style="color: var(--text-muted); margin: 0.5rem 0;">Burning Man Temple 2010 Project Lead</p>
                     </div>
                 </div>
             </div>
@@ -1642,11 +1646,8 @@
                 </div>
                 <div class="work-card-content" style="display: block;">
                     <h3>Unity Sanctuary</h3>
-                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Immersive VR yurt sanctuary.</p>
-                    <div class="tags" style="justify-content: flex-start;">
-                        <span class="tag">AltspaceVR</span>
-                        <span class="tag">Sacred Space</span>
-                    </div>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Immersive VR collective healing.</p>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">AltspaceVR, SpatialVR</p>
                 </div>
             </div>
 
@@ -1666,7 +1667,7 @@
                         <span class="explore-link">Explore &rarr;</span>
                     </div>
                     <p style="color: var(--text-muted); margin: 0.5rem 0;">Immersive VR connected environments.</p>
-                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Spatial visualization and interactive exploration.</p>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">AltspaceVR, SpatialVR</p>
                 </div>
             </div>
 
@@ -1689,7 +1690,7 @@
                     <h3>Wise Mirror</h3>
                     <p style="color: var(--text-muted); margin: 0.5rem 0;">Narrative-driven VR journey.</p>
                     <div class="tags" style="justify-content: flex-start;">
-                        <span class="tag" style="border-color: #d4af37; color: #d4af37;">Singularity U</span>
+                        <span class="tag" style="border-color: #d4af37; color: #d4af37;">Singularity University</span>
                         <span class="tag">Narrative VR</span>
                     </div>
                 </div>
@@ -1706,8 +1707,8 @@
                         <h3>TESOL VR Worlds</h3>
                         <span class="explore-link">Explore &rarr;</span>
                     </div>
-                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Virtual reality language learning platform.</p>
-                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Interactive English education in 3D spaces.</p>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">Virtual reality language learning</p>
+                    <p style="color: var(--text-muted); margin: 0.5rem 0;">AltspaceVR, SpatialVR</p>
                 </div>
             </div>
 
@@ -1744,7 +1745,7 @@
                     Brian Krawitz is a multidimensional artist working at the intersection of light, sacred geometry, and immersive technology. For over 15 years, he has been translating the invisible frequencies of consciousness into tangible, inhabitable forms—both physical and virtual.
                 </p>
                 <p style="margin-bottom: 1.5rem;">
-                    His journey began in the underground electronic music scene of the early 2000s, where he discovered that light and sound could function as catalysts for transformation rather than mere decoration. This revelation led him to develop a unique practice: creating large-scale temples and light sculptures specifically designed to be inhabited—spaces that serve as containers for community coherence and personal resonance.
+                    His journey began in the New York City underground electronic music scene of the early 90s, where he discovered that light and sound could function as catalysts for transformation rather than mere decoration. This revelation led him to develop a unique practice: creating large-scale temples and light sculptures specifically designed to be inhabited—spaces that serve as containers for community coherence and personal resonance.
                 </p>
                 <p style="margin-bottom: 1.5rem;">
                     In the physical realm, Brian has designed and fabricated award-winning installations for Burning Man, including his role as Project Lead for the Temple of Flux (2010)—one of the largest temple structures in the event's history—and Lighting Design Lead for major collaborative works like Zoa (2012) and Mens Amplio (2013). His solo pieces, from the Flower of Life-inspired "Life Within Itself" to the interactive "Fountain of Pon Lai" exhibited at the San Francisco Exploratorium, demonstrate his mastery of brass fabrication, LED engineering, and sacred geometric principles.
@@ -1778,7 +1779,17 @@
                 </div>
                 <div class="contact-item">
                     <h3>Networks</h3>
-                    <p><a href="https://www.instagram.com/bkrawitz101/">Instagram</a> • <a href="https://briankrawitz.com">Main Site</a> • <a href="#">LinkedIn</a></p>
+                    <p style="display: flex; gap: 1.5rem; justify-content: center; align-items: center; font-size: 1.8rem;">
+                        <a href="https://www.linkedin.com/in/bkrawitz" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color: var(--cyan-glow); transition: all 0.3s ease;">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.facebook.com/bkrawitz" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="color: var(--cyan-glow); transition: all 0.3s ease;">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/bkrawitz101" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color: var(--cyan-glow); transition: all 0.3s ease;">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </p>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 3rem;">
@@ -1822,7 +1833,7 @@
                 image: 'photos/Life Within Itself/fullsize/Live Within Itself Finished 01.jpg',
                 location: 'Private Collection',
                 details: [
-                    'Inspired by Flower of Life sacred geometry pattern',
+                    'Inspired by Flower of Life and Fibonacci sequence sacred geometry patterns',
                     'Custom LED lighting system with multiple color modes',
                     'Handcrafted brass framework with precision joints',
                     'Layered frosted acrylic panels for optimal light diffusion',
@@ -2219,7 +2230,7 @@
                 category: "Solo VR",
                 type: "video",
                 videoId: "R_rnILv64jo",
-                desc: "Immersive virtual reality experience based in AltspaceVR, inspired by habitable lantern-style yurts. A digital sanctuary blending sacred geometry with architectural form for meditation and community gathering.",
+                desc: "Immersive VR healing sanctuary for BRCvr featuring eight habitable lantern rooms encircling a central hall. Inspired by Chinese Beyond Borders and created in collaboration with my wife Tina Liu, this digital sculpture blends sacred geometry with unique artistic altars, serving as the foundation for the Unity The Path Of Us All series.",
                 contribution: "VR Environment Design, 3D Modeling",
                 materials: "AltspaceVR, Unity",
                 details: [
@@ -2235,7 +2246,7 @@
                 category: "VR / Digital",
                 type: "video",
                 videoId: "KdBUe7cdMow",
-                concept: "Exploring how digital proximity and shared virtual space can foster genuine human connection through biofeedback and musical integration.",
+                concept: "A bridge between physical and virtual realities where biofeedback transforms collective consciousness into sound and light. Through sacred geometry—Metatron's Cube, Platonic Solids, and the Merkaba—participants' hearts and minds generate real-time visualizations and musical harmonies within both sculptural installations and social VR environments, creating global awareness through shared energetic resonance.",
                 contribution: "VR Prototyping, Biofeedback Integration",
                 materials: "VR Environment, Biofeedback Systems, Music Integration",
                 details: ["Event: Singularity U Australia Summit 2021", "Status: Prototype", "Focus: Social VR"],
