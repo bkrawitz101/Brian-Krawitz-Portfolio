@@ -171,8 +171,9 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.6), 0 0 50px rgba(0, 243, 255, 0.3);
             letter-spacing: 2px;
+            filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.5));
         }
 
         .nav-links {
@@ -1452,7 +1453,7 @@
 
     <header>
         <nav class="container">
-            <div class="logo">[en]lightening</div>
+            <div class="logo">[en]lightening concepts</div>
             <ul class="nav-links">
                 <li><a href="#bio" onclick="toggleMobileMenu()">Origin</a></li>
                 <li><a href="#physical" onclick="toggleMobileMenu()">Light & Sculpture</a></li>
@@ -1469,7 +1470,11 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1 class="glitch max-glitch">[en]lightening concepts</h1>
+            <h1 class="glitch max-glitch">
+                [en]lightening concepts
+                <br>
+                <span style="font-size: 0.6em; letter-spacing: 8px; opacity: 0.9;">Brian Krawitz</span>
+            </h1>
             <h2>Light Sculptor & Creative Technologist</h2>
             <p>Exploring the intersection of frequency, geometry, and human consciousness through radiant structures.</p>
             <a href="#work" class="cta-button" id="enter-grid-btn">Enter the Grid</a>
