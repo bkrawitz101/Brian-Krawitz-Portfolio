@@ -1271,6 +1271,23 @@
             .hero-content h1 {
                 font-size: 1.9rem !important;
             }
+
+            .hero-content h1 br {
+                display: none;
+            }
+
+            .hero-content h1 span {
+                display: block;
+                font-size: 1rem !important;
+                letter-spacing: 3px !important;
+                margin-top: 0.5rem;
+                background: linear-gradient(135deg, var(--cyan-glow), var(--blue-trek), var(--purple-deep));
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                opacity: 1 !important;
+            }
+
             .hero-content h2 {
                 font-size: 1.1rem !important;
                 letter-spacing: 2px;
@@ -1367,10 +1384,6 @@
             }
 
             /* 2. Performance & Glows */
-            .hero-content h1.max-glitch {
-                animation: none; /* Disable complex animation */
-                text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-            }
 
             .work-card {
                 will-change: transform;
